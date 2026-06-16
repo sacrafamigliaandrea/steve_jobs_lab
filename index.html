@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Steve Jobs — Il ragazzo che non smise di sognare</title>
+<link rel="icon" type="image/jpeg" href="steve.jpg">
+<link rel="apple-touch-icon" href="steve.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#F5F9F5; --warm:#EBF2EB; --card:#FFFFFF;
+  --green:#1B6B3A; --green2:#22804A; --greenD:#0E4423; --greenL:rgba(27,107,58,.07);
+  --gold:#B8860B; --gold2:#D4A017; --goldL:rgba(184,134,11,.08);
+  --text:#1A2E1A; --muted:#4A6B4A; --light:#8BA88B;
+  --warn:#B8860B; --warnL:rgba(184,134,11,.12);
+  --brd:#C8DCC8; --brd2:#A8C4A8;
+  --shadow:0 2px 12px rgba(27,107,58,.06);
+  --shadowL:0 6px 28px rgba(27,107,58,.12);
+  --body:'Atkinson Hyperlegible',Helvetica,Arial,sans-serif;
+  --head:'Lexend',sans-serif;
+  --maxw:1280px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--body); font-size:18px; line-height:1.65;
+  color:var(--text); background:var(--cream);
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4,.head{font-family:var(--head);line-height:1.25;font-weight:600}
+.silent{}
+a{color:var(--green2)}
+
+/* ---------- TOPBAR ---------- */
+.topbar{
+  position:sticky; top:0; z-index:40;
+  background:rgba(245,249,245,.92); backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--brd);
+}
+.topbar-inner{
+  max-width:var(--maxw); margin:0 auto; padding:10px 20px;
+  display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+}
+.brand{display:flex;align-items:center;gap:10px;margin-right:auto}
+.brand img{width:34px;height:34px;border-radius:8px;object-fit:cover}
+.brand b{font-family:var(--head);font-weight:700;font-size:1.05rem;color:var(--greenD)}
+.brand span{font-size:.78rem;color:var(--muted);display:block;line-height:1}
+.nav{display:flex;gap:8px;flex-wrap:wrap}
+.pill{
+  font-family:var(--head); font-size:.92rem; font-weight:500;
+  border:1px solid var(--brd2); background:var(--card); color:var(--muted);
+  padding:7px 14px; border-radius:999px; cursor:pointer; transition:.18s;
+}
+.pill:hover{border-color:var(--green);color:var(--green)}
+.pill.active{background:var(--green);border-color:var(--green);color:#fff}
+.btn-docenti{
+  font-family:var(--head);font-size:.88rem;font-weight:500;
+  background:var(--goldL);color:var(--gold);border:1px solid var(--gold);
+  padding:7px 14px;border-radius:999px;cursor:pointer;display:flex;align-items:center;gap:6px
+}
+.btn-docenti:hover{background:var(--gold);color:#fff}
+
+/* ---------- LAYOUT ---------- */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+section.panel{display:none;animation:fade .35s ease}
+section.panel.show{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.cols{display:grid;grid-template-columns:1fr 320px;gap:28px;align-items:start;margin-top:26px}
+@media(max-width:920px){.cols{grid-template-columns:1fr}}
+
+/* ---------- HERO ---------- */
+.hero{
+  text-align:center;padding:48px 20px 32px;
+  background:linear-gradient(180deg,var(--warm),var(--cream));
+  border-bottom:1px solid var(--brd);
+}
+.hero .kicker{font-family:var(--head);font-weight:500;letter-spacing:.14em;text-transform:uppercase;font-size:.78rem;color:var(--green2)}
+.hero h1{font-size:clamp(2rem,5vw,3.4rem);color:var(--greenD);margin:10px 0 6px}
+.hero .years{font-family:var(--head);color:var(--muted);font-size:1.1rem}
+.hero .quote{
+  font-style:italic;font-size:clamp(1.1rem,2.6vw,1.6rem);
+  color:var(--gold);max-width:760px;margin:22px auto 0;line-height:1.4
+}
+.hero .quote small{display:block;font-style:normal;font-size:.85rem;color:var(--muted);margin-top:8px}
+
+/* ---------- CARDS / BLOCKS ---------- */
+.block{background:var(--card);border:1px solid var(--brd);border-radius:18px;padding:26px 28px;box-shadow:var(--shadow);margin-bottom:22px}
+.block h2{font-size:1.5rem;color:var(--greenD);margin-bottom:6px;display:flex;align-items:center;gap:12px}
+.block h2 .ic{flex:none}
+.lead{color:var(--muted);font-size:1.05rem;margin-bottom:16px}
+.block p{margin-bottom:12px}
+.block p:last-child{margin-bottom:0}
+
+.video-frame{position:relative;width:100%;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#000;box-shadow:var(--shadowL);border:1px solid var(--brd)}
+.video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+/* ---------- PLAYER INTEGRATO YOUTUBE ---------- */
+.ritratto{margin:0 0 22px;max-width:340px}
+.ritratto img{display:block;width:100%;border-radius:14px;box-shadow:var(--shadowL);border:1px solid var(--brd)}
+.ritratto figcaption{margin-top:10px;font-family:var(--head);font-size:.82rem;color:var(--muted);letter-spacing:.01em}
+.player{position:relative;width:100%;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#0b1a0f;box-shadow:var(--shadowL);border:1px solid var(--brd)}
+.player iframe,.player .yt-frame{position:absolute;inset:0;width:100%;height:100%;border:0;pointer-events:none}
+.player .yt-click{position:absolute;left:0;right:0;top:0;bottom:52px;z-index:2;cursor:pointer}
+.player .yt-cover{position:absolute;inset:0;z-index:4;background-size:cover;background-position:center top;cursor:pointer;display:grid;place-items:center}
+.player .yt-cover::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,68,35,.25),rgba(14,68,35,.6))}
+.player .yt-play{position:relative;z-index:2;width:78px;height:78px;border-radius:50%;background:rgba(255,255,255,.94);display:grid;place-items:center;box-shadow:0 8px 26px rgba(0,0,0,.4);transition:.18s;padding-left:4px}
+.player .yt-cover:hover .yt-play{transform:scale(1.06)}
+.player .yt-label{position:absolute;left:18px;bottom:18px;z-index:2;color:#fff;font-family:var(--head);font-weight:600;font-size:1rem;text-shadow:0 1px 6px rgba(0,0,0,.7)}
+.player .yt-bar{position:absolute;left:0;right:0;bottom:0;height:52px;z-index:5;display:flex;align-items:center;gap:12px;padding:0 14px;background:linear-gradient(transparent,rgba(8,28,16,.9));opacity:0;transition:.2s;pointer-events:none}
+.player.playing .yt-bar,.player:hover .yt-bar{opacity:1;pointer-events:auto}
+.player .yt-btn{flex:none;width:34px;height:34px;border-radius:8px;border:none;background:rgba(255,255,255,.16);color:#fff;cursor:pointer;display:grid;place-items:center;transition:.15s}
+.player .yt-btn:hover{background:rgba(255,255,255,.3)}
+.player .yt-seek{flex:1;height:7px;background:rgba(255,255,255,.25);border-radius:999px;cursor:pointer;position:relative;overflow:hidden}
+.player .yt-seek>i{display:block;height:100%;width:0;background:var(--gold2);transition:width .25s linear}
+.player .yt-time{flex:none;color:#fff;font-family:var(--head);font-size:.82rem;font-variant-numeric:tabular-nums}
+
+.sc-link{display:block;width:100%;text-align:left;background:none;border:none;padding:0 0 8px;font-family:var(--body);font-size:.95rem;font-weight:700;color:var(--green2);cursor:pointer}
+.sc-link:hover{text-decoration:underline}
+
+.launch{display:flex;align-items:center;gap:16px;text-decoration:none;color:var(--text);background:linear-gradient(135deg,var(--green),var(--green2));border-radius:16px;padding:18px 20px;box-shadow:0 6px 20px rgba(27,107,58,.25);transition:.2s}
+.launch:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(27,107,58,.35)}
+.launch .launch-ic{flex:none;width:54px;height:54px;border-radius:14px;background:rgba(255,255,255,.16);display:grid;place-items:center}
+.launch .launch-txt{flex:1;color:#fff}
+.launch .launch-txt b{font-family:var(--head);font-size:1.1rem;display:block}
+.launch .launch-txt small{font-size:.88rem;opacity:.9}
+.launch .launch-arrow{flex:none;color:rgba(255,255,255,.85)}
+
+.cortocircuito{
+  background:var(--goldL);border:1px solid var(--gold);border-left:6px solid var(--gold);
+  border-radius:14px;padding:20px 22px;margin:20px 0
+}
+.cortocircuito b{color:var(--gold)}
+
+/* ---------- TIMELINE ---------- */
+.timeline{position:relative;margin-top:10px;padding-left:34px}
+.timeline::before{content:"";position:absolute;left:11px;top:6px;bottom:6px;width:3px;background:var(--brd2);border-radius:3px}
+.tl{position:relative;margin-bottom:22px}
+.tl::before{content:"";position:absolute;left:-30px;top:4px;width:16px;height:16px;border-radius:50%;background:var(--green);border:3px solid var(--cream);box-shadow:0 0 0 2px var(--green)}
+.tl.gold::before{background:var(--gold);box-shadow:0 0 0 2px var(--gold)}
+.tl .yr{font-family:var(--head);font-weight:700;color:var(--green2);font-size:1.15rem}
+.tl.gold .yr{color:var(--gold)}
+.tl h3{font-size:1.1rem;margin:2px 0 4px;color:var(--greenD)}
+.tl p{font-size:.98rem;color:var(--text)}
+
+/* ---------- SCAFFOLDING ---------- */
+.scaffold{position:sticky;top:78px}
+.scaffold .sc-card{background:var(--card);border:1px solid var(--brd);border-radius:16px;padding:18px 20px;box-shadow:var(--shadow);margin-bottom:16px}
+.scaffold h4{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--green2);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.scaffold ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.scaffold li{font-size:.95rem;padding-left:20px;position:relative;color:var(--text)}
+.scaffold li::before{content:"";position:absolute;left:0;top:9px;width:8px;height:8px;border-radius:50%;background:var(--gold)}
+.scaffold .src{font-size:.9rem}
+.scaffold .src a{display:block;margin-bottom:8px;text-decoration:none;color:var(--green2);font-weight:700}
+.scaffold .src a:hover{text-decoration:underline}
+
+/* ---------- IMPEGNO (idea->azione) ---------- */
+.impegno{background:var(--greenL);border:1px dashed var(--green);border-radius:14px;padding:18px 20px;margin-top:18px}
+.impegno h4{font-family:var(--head);color:var(--green2);font-size:1rem;margin-bottom:8px}
+.impegno textarea{width:100%;min-height:70px;font-family:var(--body);font-size:18px;border:1px solid var(--brd2);border-radius:10px;padding:10px 12px;resize:vertical;background:#fff;color:var(--text)}
+.impegno textarea:focus{outline:2px solid var(--green);border-color:var(--green)}
+.check-done{display:flex;align-items:center;gap:10px;margin-top:10px;font-size:.95rem;cursor:pointer;color:var(--muted)}
+.check-done input{width:20px;height:20px;accent-color:var(--green)}
+
+/* ---------- QUIZ ---------- */
+.quiz-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:18px}
+.progress{flex:1;min-width:200px;height:12px;background:var(--warm);border-radius:999px;overflow:hidden;border:1px solid var(--brd)}
+.progress>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--green),var(--green2));transition:width .4s}
+.score-badge{font-family:var(--head);font-weight:600;color:var(--green2);background:var(--greenL);border:1px solid var(--brd2);padding:6px 14px;border-radius:999px;font-size:.95rem}
+
+.q{margin-bottom:14px}
+.q .qtype{font-family:var(--head);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:6px}
+.q .qtext{font-family:var(--head);font-weight:500;font-size:1.2rem;color:var(--greenD);margin-bottom:14px}
+.opts{display:grid;gap:10px}
+.opt{
+  text-align:left;font-family:var(--body);font-size:1.02rem;
+  background:var(--card);border:2px solid var(--brd2);border-radius:12px;
+  padding:13px 16px;cursor:pointer;transition:.15s;color:var(--text);display:flex;align-items:center;gap:12px
+}
+.opt:hover:not([disabled]){border-color:var(--green);background:var(--greenL)}
+.opt .mk{flex:none;width:24px;height:24px;border-radius:50%;border:2px solid var(--brd2);display:grid;place-items:center}
+.opt.correct{border-color:var(--green);background:var(--greenL)}
+.opt.correct .mk{background:var(--green);border-color:var(--green)}
+.opt.wrong{border-color:var(--gold);background:var(--warnL)}
+.opt.wrong .mk{background:var(--gold);border-color:var(--gold)}
+.opt[disabled]{cursor:default}
+.tf{display:flex;gap:12px;flex-wrap:wrap}
+.tf .opt{flex:1;min-width:140px;justify-content:center;font-weight:700;font-family:var(--head)}
+
+.fill input{font-family:var(--body);font-size:18px;border:2px solid var(--brd2);border-radius:10px;padding:11px 14px;width:240px;max-width:100%;background:#fff;color:var(--text)}
+.fill input:focus{outline:2px solid var(--green);border-color:var(--green)}
+.fill .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+/* reorder */
+.reorder{display:flex;flex-direction:column;gap:10px}
+.ro-item{display:flex;align-items:center;gap:12px;background:var(--card);border:2px solid var(--brd2);border-radius:12px;padding:10px 14px}
+.ro-item .lbl{flex:1}
+.ro-item .num{font-family:var(--head);font-weight:700;color:var(--green2);width:28px;text-align:center}
+.ro-btns{display:flex;gap:4px}
+.ro-btns button{width:34px;height:34px;border-radius:8px;border:1px solid var(--brd2);background:var(--cream);cursor:pointer;display:grid;place-items:center;color:var(--green)}
+.ro-btns button:hover{border-color:var(--green);background:var(--greenL)}
+.ro-item.correct{border-color:var(--green);background:var(--greenL)}
+.ro-item.wrong{border-color:var(--gold);background:var(--warnL)}
+
+/* match */
+.match{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:560px){.match{grid-template-columns:1fr}}
+.match .col h5{font-family:var(--head);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.match .mitem{display:block;width:100%;text-align:left;background:var(--card);border:2px solid var(--brd2);border-radius:12px;padding:12px 14px;margin-bottom:10px;cursor:pointer;font-family:var(--body);font-size:1rem;color:var(--text);transition:.15s}
+.match .mitem:hover:not([disabled]){border-color:var(--green)}
+.match .mitem.sel{border-color:var(--gold);background:var(--warnL)}
+.match .mitem.done{border-color:var(--green);background:var(--greenL);cursor:default}
+.match .mitem .tag{font-family:var(--head);font-weight:700;color:var(--green2);margin-right:8px}
+
+.feedback{margin-top:14px;border-radius:12px;padding:13px 16px;font-size:1rem;display:none;align-items:flex-start;gap:10px}
+.feedback.show{display:flex}
+.feedback.ok{background:var(--greenL);border:1px solid var(--green);color:var(--greenD)}
+.feedback.tip{background:var(--warnL);border:1px solid var(--gold);color:var(--gold)}
+.feedback b{font-family:var(--head)}
+
+.qnav{display:flex;justify-content:space-between;gap:12px;margin-top:22px;flex-wrap:wrap}
+.btn{
+  font-family:var(--head);font-weight:600;font-size:1rem;border:none;border-radius:12px;
+  padding:12px 24px;cursor:pointer;transition:.18s;display:inline-flex;align-items:center;gap:8px
+}
+.btn-ghost{background:var(--card);border:1px solid var(--brd2);color:var(--muted)}
+.btn-ghost:hover{border-color:var(--green);color:var(--green)}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#fff;box-shadow:0 4px 14px rgba(184,134,11,.3)}
+.btn-gold:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(184,134,11,.4)}
+.btn-gold[disabled]{opacity:.45;cursor:not-allowed;transform:none}
+.btn-green{background:linear-gradient(135deg,var(--green),var(--green2));color:#fff;box-shadow:0 4px 14px rgba(27,107,58,.25)}
+.btn-green:hover{transform:translateY(-1px)}
+
+.quiz-result{text-align:center;padding:20px}
+.quiz-result .big{font-family:var(--head);font-size:3rem;font-weight:700;color:var(--green2)}
+.quiz-result .msg{font-size:1.15rem;color:var(--muted);margin:8px 0 20px}
+
+/* ---------- METACOGNIZIONE ---------- */
+.meta-q{background:var(--card);border:1px solid var(--brd);border-radius:16px;padding:22px 24px;box-shadow:var(--shadow);margin-bottom:18px}
+.meta-q .step{font-family:var(--head);font-weight:700;color:var(--gold);font-size:.85rem;letter-spacing:.08em}
+.meta-q h3{font-size:1.2rem;color:var(--greenD);margin:4px 0 12px}
+.meta-q textarea{width:100%;min-height:90px;font-family:var(--body);font-size:18px;border:1px solid var(--brd2);border-radius:10px;padding:12px 14px;resize:vertical;background:#fff;color:var(--text)}
+.meta-q textarea:focus{outline:2px solid var(--green);border-color:var(--green)}
+
+/* ---------- MODAL ---------- */
+.modal-bg{position:fixed;inset:0;background:rgba(14,68,35,.5);backdrop-filter:blur(4px);z-index:90;display:none;align-items:center;justify-content:center;padding:20px}
+.modal-bg.show{display:flex;animation:fade .25s}
+.modal{background:var(--card);border-radius:20px;max-width:720px;width:100%;max-height:88vh;overflow:auto;box-shadow:var(--shadowL)}
+.modal-h{display:flex;align-items:center;justify-content:space-between;padding:20px 26px;border-bottom:1px solid var(--brd);position:sticky;top:0;background:var(--card)}
+.modal-h h3{color:var(--greenD);font-size:1.3rem}
+.modal-close{width:38px;height:38px;border-radius:10px;border:1px solid var(--brd2);background:var(--cream);cursor:pointer;display:grid;place-items:center;color:var(--muted)}
+.modal-close:hover{border-color:var(--gold);color:var(--gold)}
+.modal-tabs{display:flex;gap:8px;padding:16px 26px 0;flex-wrap:wrap}
+.modal-tab{font-family:var(--head);font-size:.9rem;font-weight:500;border:1px solid var(--brd2);background:var(--cream);color:var(--muted);padding:7px 14px;border-radius:999px;cursor:pointer}
+.modal-tab.active{background:var(--green);color:#fff;border-color:var(--green)}
+.modal-body{padding:18px 26px 28px}
+.modal-pane{display:none}
+.modal-pane.show{display:block}
+.modal-pane h4{color:var(--green2);margin:16px 0 8px;font-size:1.05rem}
+.modal-pane p{margin-bottom:10px}
+.modal-pane ul{margin:0 0 12px 20px}
+.modal-pane li{margin-bottom:6px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.tag-b{font-family:var(--head);font-size:.8rem;background:var(--greenL);color:var(--green2);border:1px solid var(--brd2);padding:5px 12px;border-radius:999px}
+
+/* ---------- FOOTER ---------- */
+footer{text-align:center;padding:34px 20px;color:var(--light);font-size:.88rem;border-top:1px solid var(--brd);margin-top:40px}
+footer b{color:var(--muted)}
+
+.ic{display:inline-block;vertical-align:middle}
+.hint{font-size:.95rem;color:var(--muted);margin-bottom:8px}
+.bigquote{font-size:1.5rem;font-style:italic;color:var(--gold);margin:0}
+.qcounter{font-size:.85rem;color:var(--muted);margin-bottom:18px}
+</style>
+</head>
+<body>
+
+<!-- ================= TOPBAR ================= -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <img src="logo.jpg" alt="Logo">
+      <div>
+        <b>Steve Jobs</b>
+        <span>Percorso didattico · Sacra Famiglia</span>
+      </div>
+    </div>
+    <nav class="nav" id="nav">
+      <button class="pill active" data-go="foto">La fotografia</button>
+      <button class="pill" data-go="intro">Il video breve</button>
+      <button class="pill" data-go="storia">La storia</button>
+      <button class="pill" data-go="parole">Le parole</button>
+      <button class="pill" data-go="quiz">Metti alla prova</button>
+      <button class="pill" data-go="rifletti">Rifletti</button>
+      <button class="pill" data-go="documentario">Il video completo</button>
+    </nav>
+    <button class="btn-docenti" id="openDocenti">
+      <svg class="ic" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+      Docenti
+    </button>
+  </div>
+</header>
+
+<!-- ================= INTRO / VIDEO BREVE ================= -->
+<section class="panel" id="intro">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <div class="block">
+          <h2>
+            <svg class="ic" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Guarda: chi era Steve Jobs
+          </h2>
+          <p class="lead">Tre minuti per conoscere l'uomo che ha cambiato il modo in cui usiamo la tecnologia. Guarda con attenzione: ti serviranno questi fatti più avanti.</p>
+          <div class="player" data-yt="5yP7R1ua4k4">
+            <div class="yt-frame"></div>
+            <div class="yt-click"></div>
+            <div class="yt-cover">
+              <div class="yt-play"><svg width="30" height="30" viewBox="0 0 24 24" fill="var(--green)" stroke="none"><polygon points="6 4 20 12 6 20 6 4"/></svg></div>
+              <div class="yt-label">Video breve · 3 min</div>
+            </div>
+            <div class="yt-bar">
+              <button class="yt-btn yt-pp" aria-label="Play o pausa"></button>
+              <div class="yt-seek"><i></i></div>
+              <span class="yt-time">0:00</span>
+              <button class="yt-btn yt-mute" aria-label="Attiva o disattiva audio"></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <h2>
+            <svg class="ic" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+            Il cortocircuito
+          </h2>
+          <div class="cortocircuito">
+            <p>Un ragazzo di 21 anni costruisce computer in un <b>garage</b>. A 25 anni vale 100 milioni di dollari. Poi&hellip; <b>viene licenziato dall'azienda che lui stesso ha fondato.</b></p>
+            <p>Dieci anni dopo, quella stessa azienda &mdash; sull'orlo del fallimento &mdash; lo <b>richiama in ginocchio</b>. E lui la trasforma nell'azienda più ammirata del mondo.</p>
+          </div>
+          <p><b>Come è possibile?</b> Cosa rende una persona capace di rialzarsi da un fallimento così pubblico? Tieni a mente questa domanda mentre scopri la sua storia.</p>
+
+          <div class="impegno">
+            <h4>La tua ipotesi (prima di sapere)</h4>
+            <p class="hint">Scrivi cosa pensi: secondo te, perché un'azienda licenzia il proprio fondatore e poi lo richiama?</p>
+            <textarea data-save="ipotesi" placeholder="Secondo me&hellip;"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <aside class="scaffold">
+        <div class="sc-card">
+          <h4>
+            <svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--green2)" stroke-width="2"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12c.5.5 1 1.5 1 2h6c0-.5.5-1.5 1-2a7 7 0 0 0-4-12z"/></svg>
+            Da osservare nel video
+          </h4>
+          <ul>
+            <li>In che anno e <b>dove</b> nasce Apple?</li>
+            <li>Quanti anni aveva Jobs quando ha iniziato?</li>
+            <li>Quale prodotto lancia nel 1984?</li>
+            <li>Cosa succede nel 1985?</li>
+            <li>Quando torna in Apple?</li>
+          </ul>
+        </div>
+        <div class="sc-card">
+          <h4>
+            <svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--green2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            E ora?
+          </h4>
+          <div class="src">
+            <button class="sc-link" data-go="storia">Scopri la sua storia &rsaquo;</button>
+            <button class="sc-link" data-go="quiz">Mettiti alla prova &rsaquo;</button>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STORIA ================= -->
+<section class="panel" id="storia">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <div class="block">
+          <h2>
+            <svg class="ic" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            La storia, anno dopo anno
+          </h2>
+          <p class="lead">Una vita fatta di salite, cadute e ritorni. Leggi la linea del tempo: dovrai ricostruirla tu nel quiz.</p>
+
+          <div class="timeline">
+            <div class="tl">
+              <div class="yr">1976</div>
+              <h3>Tutto comincia in un garage</h3>
+              <p>Steve ha solo 21 anni. Si fa prestare i soldi da un negozio di elettronica e con un amico fonda <b>Apple Computer</b>. Nasce l'<b>Apple I</b>, uno dei primi personal computer. Sembra un gioco da ragazzi, ma è un gioco milionario.</p>
+            </div>
+            <div class="tl">
+              <div class="yr">1980</div>
+              <h3>Apple va in Borsa</h3>
+              <p>A 25 anni la fame, la follia e il genio di Jobs valgono <b>100 milioni di dollari</b>.</p>
+            </div>
+            <div class="tl">
+              <div class="yr">1984</div>
+              <h3>Il Macintosh</h3>
+              <p>Lancia il <b>Macintosh</b>: un computer moderno, intuitivo e funzionale. Lo spot televisivo è diretto dal famoso regista <b>Ridley Scott</b>.</p>
+            </div>
+            <div class="tl gold">
+              <div class="yr">1985</div>
+              <h3>La caduta</h3>
+              <p>La Apple, l'azienda che lui aveva fondato 9 anni prima, <b>lo licenzia</b>. Dissapori, contrasti, forse invidie. Jobs fonda allora una nuova azienda, la <b>NeXT Computer</b>.</p>
+            </div>
+            <div class="tl">
+              <div class="yr">1995</div>
+              <h3>Il ritorno</h3>
+              <p>Apple è in grave crisi finanziaria e ha di nuovo bisogno di lui. Lo richiama: torna alla guida della società. È la <b>svolta</b>.</p>
+            </div>
+            <div class="tl">
+              <div class="yr">2000+</div>
+              <h3>La rivoluzione del terzo millennio</h3>
+              <p>iPod, iBook, MacBook, iPhone e iPad entrano nelle case e nella vita quotidiana di milioni di persone in tutto il mondo.</p>
+            </div>
+            <div class="tl gold">
+              <div class="yr">2011</div>
+              <h3>L'addio</h3>
+              <p>Il 29 agosto Jobs lascia la guida di Apple a <b>Tim Cook</b>. Il 4 ottobre Cook presenta l'iPhone 4S; il giorno dopo, il <b>5 ottobre</b>, Steve Jobs si spegne dopo una lunga malattia. Il presidente Obama lo definisce &ldquo;un genio dei nostri tempi&rdquo;.</p>
+            </div>
+          </div>
+
+          <div class="impegno">
+            <h4>Idea &rarr; azione</h4>
+            <p class="hint">Scegli <b>una</b> tappa della sua vita che ti ha colpito di più e spiega in una frase perché.</p>
+            <textarea data-save="tappa" placeholder="La tappa che mi ha colpito è&hellip; perché&hellip;"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <aside class="scaffold">
+        <div class="sc-card">
+          <h4>
+            <svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--green2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            Parole chiave
+          </h4>
+          <ul>
+            <li><b>Garage</b> &mdash; dove nascono molte grandi idee</li>
+            <li><b>Personal computer</b> &mdash; un computer per tutti, a casa</li>
+            <li><b>Andare in Borsa</b> &mdash; l'azienda mette in vendita le sue azioni</li>
+            <li><b>Visionario</b> &mdash; chi immagina il futuro prima degli altri</li>
+          </ul>
+        </div>
+        <div class="sc-card">
+          <h4>
+            <svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg>
+            Fermati e pensa
+          </h4>
+          <ul>
+            <li>Quanti anni passano tra la fondazione e il licenziamento?</li>
+            <li>Cosa fa Jobs <i>dopo</i> essere stato licenziato?</li>
+            <li>Perché secondo te Apple lo richiama?</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PAROLE ================= -->
+<section class="panel" id="parole">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <div class="block">
+          <h2>
+            <svg class="ic" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Le parole che hanno fatto storia
+          </h2>
+          <p class="lead">Nel 2005, a 50 anni e un anno dopo un delicato intervento al pancreas, Steve Jobs parla agli studenti di Stanford. Chiude con tre parole rimaste celebri.</p>
+
+          <div class="cortocircuito" style="text-align:center">
+            <p class="bigquote">&ldquo;Stay hungry. Stay foolish.&rdquo;</p>
+            <p style="margin:8px 0 0;color:var(--muted)">Siate affamati. Siate folli.</p>
+          </div>
+
+          <p><b>Cosa significa?</b> Non smettere mai di avere <i>fame</i> di imparare e di migliorare. Non avere paura di sembrare <i>folle</i> quando insegui un'idea in cui credi, anche se gli altri non la capiscono.</p>
+          <p>Jobs diceva anche: <i>&ldquo;Il vostro tempo è limitato, non sprecatelo vivendo la vita di qualcun altro.&rdquo;</i> &mdash; un invito a seguire la propria strada.</p>
+
+          <div class="impegno">
+            <h4>Il mio impegno</h4>
+            <p class="hint">Pensa a una cosa che vorresti imparare o migliorare. Scrivi <b>una sola</b> piccola azione concreta che puoi fare questa settimana.</p>
+            <textarea data-save="impegno" placeholder="Questa settimana io&hellip;"></textarea>
+            <label class="check-done"><input type="checkbox" data-save="impegno-done"> L'ho messo in pratica</label>
+          </div>
+        </div>
+      </div>
+
+      <aside class="scaffold">
+        <div class="sc-card">
+          <h4>
+            <svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--green2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
+            Frasi per partire
+          </h4>
+          <ul>
+            <li>&ldquo;Vorrei imparare a&hellip;&rdquo;</li>
+            <li>&ldquo;Una piccola azione che posso fare è&hellip;&rdquo;</li>
+            <li>&ldquo;Anche se sembra strano, io&hellip;&rdquo;</li>
+          </ul>
+        </div>
+        <div class="sc-card">
+          <h4>
+            <svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/></svg>
+            Regola
+          </h4>
+          <ul>
+            <li>Vale solo se è <b>una</b> azione concreta e piccola, non un grande piano.</li>
+            <li>Niente &ldquo;mi piace&rdquo;: spiega sempre il <b>perché</b>.</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LA FOTOGRAFIA (PREAMBOLO) ================= -->
+<section class="panel show" id="foto">
+  <div class="hero">
+    <div class="kicker">Ritratto di un visionario</div>
+    <h1>Il ragazzo che non smise di sognare</h1>
+    <div class="years">Steven Paul Jobs · 1955 — 2011</div>
+    <div class="quote">
+      &ldquo;Siate affamati, siate folli.&rdquo;
+      <small>Discorso agli studenti di Stanford, 2005</small>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <div class="block">
+          <h2>
+            <svg class="ic" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+            Prima di tutto: una fotografia
+          </h2>
+          <p class="lead">Un'immagine può raccontare una persona meglio di mille parole. Partiamo da qui: osserva la celebre fotografia di Steve Jobs e prova a leggere cosa comunica con il suo sguardo e la sua posa. È il nostro preambolo.</p>
+          <figure class="ritratto">
+            <img src="steve.jpg" alt="Ritratto in bianco e nero di Steve Jobs: mano sul mento, occhiali tondi, dolcevita nero" loading="lazy">
+            <figcaption>Steve Jobs &middot; il celebre ritratto in bianco e nero</figcaption>
+          </figure>
+          <p class="lead">E ora guarda questo breve video che racconta come è nata questa immagine.</p>
+          <div class="player" data-yt="s_yhpcf4cnI">
+            <div class="yt-frame"></div>
+            <div class="yt-click"></div>
+            <div class="yt-cover">
+              <div class="yt-play"><svg width="30" height="30" viewBox="0 0 24 24" fill="var(--green)" stroke="none"><polygon points="6 4 20 12 6 20 6 4"/></svg></div>
+              <div class="yt-label">La fotografia di Steve</div>
+            </div>
+            <div class="yt-bar">
+              <button class="yt-btn yt-pp" aria-label="Play o pausa"></button>
+              <div class="yt-seek"><i></i></div>
+              <span class="yt-time">0:00</span>
+              <button class="yt-btn yt-mute" aria-label="Attiva o disattiva audio"></button>
+            </div>
+          </div>
+
+          <div class="impegno">
+            <h4>Leggi l'immagine</h4>
+            <p class="hint">Osserva con attenzione: la posa, lo sguardo, gli oggetti, i colori. Che cosa vuole comunicare di sé Steve Jobs in questa fotografia? Scrivi due o tre cose che noti.</p>
+            <textarea data-save="foto-oss" placeholder="Nella fotografia noto&hellip;"></textarea>
+          </div>
+          <div style="text-align:right;margin-top:18px">
+            <button class="btn btn-gold" data-go="intro">Ora la sua storia in 3 minuti ›</button>
+          </div>
+        </div>
+      </div>
+
+      <aside class="scaffold">
+        <div class="sc-card">
+          <h4>
+            <svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--green2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            Cosa guardare
+          </h4>
+          <ul>
+            <li>Lo <b>sguardo</b>: dove guarda? Cosa trasmette?</li>
+            <li>Le <b>mani</b> e la posa del corpo.</li>
+            <li>I <b>colori</b> e la luce della foto.</li>
+            <li>Gli <b>oggetti</b> attorno a lui.</li>
+          </ul>
+        </div>
+        <div class="sc-card">
+          <h4>
+            <svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/></svg>
+            Regola
+          </h4>
+          <ul>
+            <li>Niente &ldquo;è bella&rdquo;: spiega <b>cosa</b> ti fa pensare e <b>perché</b>.</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ================= IL DOCUMENTARIO ================= -->
+<section class="panel" id="documentario">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <div class="block">
+          <h2>
+            <svg class="ic" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/></svg>
+            Il documentario completo
+          </h2>
+          <p class="lead">Per chiudere, la versione integrale della storia di Steve Jobs. L'abbiamo trasformata in un'esperienza interattiva: il video a sinistra, la mappa delle parole chiave che si illumina a destra, sincronizzata.</p>
+          <a class="launch" href="video-completo.html">
+            <span class="launch-ic">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="13" height="16" rx="2"/><polygon points="6 8 11 12 6 16 6 8" fill="#fff" stroke="none"/><path d="M18 7h4M18 12h4M18 17h4"/></svg>
+            </span>
+            <span class="launch-txt">
+              <b>Apri l'esperienza interattiva</b>
+              <small>Video + mappa delle parole chiave, sincronizzati &middot; stile Apple</small>
+            </span>
+            <svg class="launch-arrow" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+
+          <div class="impegno">
+            <h4>Il mio appunto</h4>
+            <p class="hint">Mentre guardi, fermati su <b>un momento</b> che il video breve non aveva raccontato. Scrivi cosa hai scoperto di nuovo.</p>
+            <textarea data-save="doc-appunto" placeholder="Una cosa nuova che ho scoperto è&hellip;"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <aside class="scaffold">
+        <div class="sc-card">
+          <h4>
+            <svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--green2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-4 12c.5.5 1 1.5 1 2h6c0-.5.5-1.5 1-2a7 7 0 0 0-4-12z"/><path d="M9 18h6M10 22h4"/></svg>
+            Domande-bussola
+          </h4>
+          <ul>
+            <li>Chi ha aiutato Steve nei momenti difficili?</li>
+            <li>Quali idee aveva sul <b>design</b> e sulla semplicità?</li>
+            <li>Cosa ha imparato dai suoi fallimenti?</li>
+            <li>Cosa lo rendeva diverso dagli altri?</li>
+          </ul>
+        </div>
+        <div class="sc-card">
+          <h4>
+            <svg class="ic" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            Consiglio
+          </h4>
+          <ul>
+            <li>È lungo: puoi guardarlo in più volte.</li>
+            <li>Tieni accanto la <b>linea del tempo</b> per non perderti.</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ================= QUIZ ================= -->
+<section class="panel" id="quiz">
+  <div class="wrap" style="max-width:840px;margin-top:26px">
+    <div class="block">
+      <div class="quiz-head">
+        <h2 style="margin:0">
+          <svg class="ic" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          Metti alla prova
+        </h2>
+        <div class="score-badge" id="scoreBadge">Punti: 0</div>
+      </div>
+      <div class="progress" style="margin-bottom:8px"><i id="progBar"></i></div>
+      <div class="qcounter" id="qCounter">Domanda 1 di 6</div>
+
+      <div id="quizArea"></div>
+
+      <div class="qnav">
+        <button class="btn btn-ghost" id="prevBtn">‹ Indietro</button>
+        <button class="btn btn-gold" id="checkBtn" disabled>Verifica</button>
+        <button class="btn btn-green" id="nextBtn" style="display:none">Avanti ›</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RIFLETTI ================= -->
+<section class="panel" id="rifletti">
+  <div class="wrap" style="max-width:820px;margin-top:26px">
+    <div class="block" style="text-align:center;background:linear-gradient(180deg,var(--warm),var(--card))">
+      <h2 style="justify-content:center">
+        <svg class="ic" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 0-2.5-2.5h-5A1.5 1.5 0 0 1 3 15.5V3.5A1.5 1.5 0 0 1 4.5 2z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 1 2.5-2.5h5a1.5 1.5 0 0 0 1.5-1.5V3.5A1.5 1.5 0 0 0 19.5 2z"/></svg>
+        Chiudi il cerchio
+      </h2>
+      <p class="lead" style="margin:0 auto;max-width:560px">Il momento più importante: non basta sapere cosa ha fatto Jobs, conta capire cosa ne porti con te.</p>
+    </div>
+
+    <div class="meta-q">
+      <div class="step">PASSO 1</div>
+      <h3>Cosa ho capito?</h3>
+      <textarea data-save="meta1" placeholder="La cosa più importante che ho imparato su Steve Jobs è&hellip;"></textarea>
+    </div>
+    <div class="meta-q">
+      <div class="step">PASSO 2</div>
+      <h3>Come ci sono arrivato?</h3>
+      <textarea data-save="meta2" placeholder="L'ho capito grazie a&hellip; (il video, la linea del tempo, il quiz&hellip;)"></textarea>
+    </div>
+    <div class="meta-q">
+      <div class="step">PASSO 3</div>
+      <h3>Cosa cambierei o vorrei sapere ancora?</h3>
+      <textarea data-save="meta3" placeholder="Mi piacerebbe scoprire&hellip; / La prossima volta proverei a&hellip;"></textarea>
+    </div>
+
+    <div class="cortocircuito" style="text-align:center">
+      <p style="margin:0">Torna alla tua <b>ipotesi iniziale</b>: ora sapresti rispondere meglio? Perché Apple ha richiamato Jobs?</p>
+    </div>
+
+    <div style="text-align:center;margin-top:24px">
+      <button class="btn btn-green" id="restartBtn">Ricomincia il percorso</button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MODAL DOCENTI ================= -->
+<div class="modal-bg" id="docentiModal">
+  <div class="modal">
+    <div class="modal-h">
+      <h3>Info Docenti</h3>
+      <button class="modal-close" id="closeDocenti" aria-label="Chiudi">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="modal-tabs">
+      <button class="modal-tab active" data-tab="m1">Metodologia</button>
+      <button class="modal-tab" data-tab="m2">Struttura e tecniche</button>
+      <button class="modal-tab" data-tab="m3">Video / Risorse</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-pane show" id="m1">
+        <h4>Obiettivo didattico</h4>
+        <p>Conoscere la figura di Steve Jobs come esempio di resilienza, innovazione e coraggio di seguire la propria strada. Il percorso non punta alla celebrazione acritica, ma a far emergere dallo studente una riflessione su fallimento, perseveranza e visione.</p>
+        <h4>Cornice pedagogica</h4>
+        <ul>
+          <li><b>Piaget &mdash; Conflitto cognitivo:</b> l'apertura propone un &ldquo;cortocircuito&rdquo; (fondatore licenziato e poi richiamato) che rompe lo schema e attiva la domanda.</li>
+          <li><b>Dewey &mdash; Learning by doing:</b> lo studente ricostruisce attivamente la linea del tempo (quiz di riordino) invece di leggerla passivamente.</li>
+          <li><b>Vygotskij &mdash; Scaffolding:</b> la colonna destra offre parole chiave, frasi-innesco e domande-guida, ritirate gradualmente.</li>
+          <li><b>Metacognizione:</b> chiusura sulle tre domande &ldquo;cosa ho capito / come / cosa cambierei&rdquo;.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag-b">Cittadinanza Digitale</span>
+          <span class="tag-b">Pensiero critico</span>
+          <span class="tag-b">Metacognizione</span>
+          <span class="tag-b">Storia della tecnologia</span>
+          <span class="tag-b">Self-efficacy</span>
+        </div>
+      </div>
+      <div class="modal-pane" id="m2">
+        <h4>Struttura del percorso</h4>
+        <ul>
+          <li><b>Inizio:</b> video breve + cortocircuito + ipotesi personale.</li>
+          <li><b>La storia:</b> linea del tempo 1976&rarr;2011 con consegna pratica.</li>
+          <li><b>Le parole:</b> &ldquo;Stay hungry, stay foolish&rdquo; e impegno concreto (una sola micro-azione).</li>
+          <li><b>Metti alla prova:</b> quiz a tipologie varie con feedback non punitivo.</li>
+          <li><b>Rifletti:</b> chiusura metacognitiva in tre passi.</li>
+        </ul>
+        <h4>Tipologie di domanda usate</h4>
+        <p>Scelta multipla, Vero/Falso, Completa gli spazi, Riordina (linea del tempo), Abbina. Il feedback errato usa l'<b>ambra</b>, mai il rosso: lo sbaglio è un'occasione, non una bocciatura.</p>
+        <h4>Suggerimenti d'aula</h4>
+        <ul>
+          <li>Far guardare il video una sola volta, poi affrontare il quiz: stimola l'attenzione attiva.</li>
+          <li>Le risposte aperte restano sul dispositivo dello studente (privacy by design): usarle come spunto di discussione orale.</li>
+          <li>Su LIM: una sezione per schermata, alto contrasto.</li>
+        </ul>
+      </div>
+      <div class="modal-pane" id="m3">
+        <h4>Materiali (tutti integrati nell'app)</h4>
+        <ul>
+          <li><button class="sc-link" data-go="foto">La fotografia di Steve &mdash; preambolo</button></li>
+          <li><button class="sc-link" data-go="intro">Video breve &mdash; usato nelle attività</button></li>
+          <li><button class="sc-link" data-go="documentario">Video completo &mdash; finale</button></li>
+        </ul>
+        <h4>Estensioni possibili</h4>
+        <ul>
+          <li>Visione del discorso di Stanford 2005 (versione integrale) con i più grandi.</li>
+          <li>Dibattito: &ldquo;Sbagliare aiuta a crescere?&rdquo; partendo dal licenziamento del 1985.</li>
+          <li>Scrittura: lettera al sé futuro ispirata a &ldquo;stay hungry, stay foolish&rdquo;.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p><b>Steve Jobs &mdash; Il ragazzo che non smise di sognare</b></p>
+  <p>Percorso didattico · Ecosistema Sacra Famiglia · Andrea Cerioli, Animatore Digitale</p>
+</footer>
+
+<script>
+"use strict";
+
+/* ---------- NAVIGAZIONE ---------- */
+const panels = document.querySelectorAll('.panel');
+const pills = document.querySelectorAll('.pill');
+const ytPlayers=[];
+function goTo(id){
+  panels.forEach(p=>p.classList.toggle('show', p.id===id));
+  pills.forEach(b=>b.classList.toggle('active', b.dataset.go===id));
+  const mb=document.getElementById('docentiModal'); if(mb)mb.classList.remove('show');
+  ytPlayers.forEach(pl=>{ try{ if(pl&&pl.pauseVideo)pl.pauseVideo(); }catch(e){} });
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>goTo(b.dataset.go)));
+
+/* ---------- SALVATAGGIO RISPOSTE APERTE (localStorage) ---------- */
+const KEY='stevejobs_app_v1';
+function load(){ try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return {}} }
+function save(data){ try{localStorage.setItem(KEY,JSON.stringify(data))}catch(e){} }
+let store=load();
+document.querySelectorAll('[data-save]').forEach(el=>{
+  const k=el.dataset.save;
+  if(el.type==='checkbox'){ if(store[k])el.checked=true; el.addEventListener('change',()=>{store[k]=el.checked;save(store)}); }
+  else { if(store[k]!=null)el.value=store[k]; el.addEventListener('input',()=>{store[k]=el.value;save(store)}); }
+});
+
+/* ---------- MODAL DOCENTI ---------- */
+const modal=document.getElementById('docentiModal');
+document.getElementById('openDocenti').addEventListener('click',()=>modal.classList.add('show'));
+document.getElementById('closeDocenti').addEventListener('click',()=>modal.classList.remove('show'));
+modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.remove('show')});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')modal.classList.remove('show')});
+document.querySelectorAll('.modal-tab').forEach(t=>t.addEventListener('click',()=>{
+  document.querySelectorAll('.modal-tab').forEach(x=>x.classList.toggle('active',x===t));
+  document.querySelectorAll('.modal-pane').forEach(p=>p.classList.toggle('show',p.id===t.dataset.tab));
+}));
+
+/* ====================================================
+   PLAYER YOUTUBE INTEGRATO (no resize, no exit, no distrazioni)
+   ==================================================== */
+const playPath='<svg width="16" height="16" viewBox="0 0 24 24" fill="#fff" stroke="none"><polygon points="6 4 20 12 6 20 6 4"/></svg>';
+const pausePath='<svg width="16" height="16" viewBox="0 0 24 24" fill="#fff" stroke="none"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
+const volPath='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a9 9 0 0 1 0 14"/></svg>';
+const mutePath='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>';
+
+let ytReady=false; const ytQueue=[];
+window.onYouTubeIframeAPIReady=function(){ ytReady=true; ytQueue.forEach(fn=>fn()); ytQueue.length=0; };
+(function(){ const s=document.createElement('script'); s.src='https://www.youtube.com/iframe_api'; document.head.appendChild(s); })();
+function whenYT(fn){ ytReady?fn():ytQueue.push(fn); }
+function fmtT(t){ t=Math.floor(t||0); const m=Math.floor(t/60), s=t%60; return m+':'+(s<10?'0':'')+s; }
+
+document.querySelectorAll('.player').forEach(function(el){
+  const vid=el.dataset.yt;
+  const cover=el.querySelector('.yt-cover');
+  const frame=el.querySelector('.yt-frame');
+  const pp=el.querySelector('.yt-pp');
+  const muteBtn=el.querySelector('.yt-mute');
+  const seek=el.querySelector('.yt-seek');
+  const fill=seek.querySelector('i');
+  const timeEl=el.querySelector('.yt-time');
+  const clickLayer=el.querySelector('.yt-click');
+  let player=null, timer=null, dur=0;
+
+  cover.style.backgroundImage="url('https://img.youtube.com/vi/"+vid+"/hqdefault.jpg')";
+  pp.innerHTML=playPath; muteBtn.innerHTML=volPath;
+
+  function setPP(playing){ pp.innerHTML=playing?pausePath:playPath; }
+  function tick(){ if(!player||!player.getCurrentTime)return; const ct=player.getCurrentTime(); if(!dur)dur=player.getDuration()||0; fill.style.width=(dur?ct/dur*100:0)+'%'; timeEl.textContent=fmtT(ct)+' / '+fmtT(dur); }
+  function startTimer(){ stopTimer(); timer=setInterval(tick,300); }
+  function stopTimer(){ if(timer){clearInterval(timer);timer=null;} }
+
+  function start(){
+    cover.style.display='none';
+    whenYT(function(){
+      player=new YT.Player(frame,{
+        videoId:vid,
+        playerVars:{rel:0,modestbranding:1,controls:0,disablekb:1,fs:0,iv_load_policy:3,playsinline:1,enablejsapi:1},
+        events:{
+          'onReady':function(e){ dur=e.target.getDuration()||0; ytPlayers.push(e.target); e.target.playVideo(); },
+          'onStateChange':function(e){
+            if(e.data===YT.PlayerState.PLAYING){ el.classList.add('playing'); setPP(true); startTimer(); }
+            else if(e.data===YT.PlayerState.PAUSED){ el.classList.remove('playing'); setPP(false); stopTimer(); }
+            else if(e.data===YT.PlayerState.ENDED){ el.classList.remove('playing'); setPP(false); stopTimer(); fill.style.width='100%'; }
+          }
+        }
+      });
+    });
+  }
+  function toggle(){ if(!player||!player.getPlayerState)return; player.getPlayerState()===YT.PlayerState.PLAYING?player.pauseVideo():player.playVideo(); }
+
+  cover.addEventListener('click',start);
+  clickLayer.addEventListener('click',toggle);
+  pp.addEventListener('click',toggle);
+  muteBtn.addEventListener('click',function(){ if(!player||!player.isMuted)return; if(player.isMuted()){player.unMute();muteBtn.innerHTML=volPath;} else {player.mute();muteBtn.innerHTML=mutePath;} });
+  seek.addEventListener('click',function(e){ if(!player||!dur)return; const r=seek.getBoundingClientRect(); player.seekTo(Math.max(0,Math.min(1,(e.clientX-r.left)/r.width))*dur,true); });
+});
+
+/* ====================================================
+   QUIZ
+   ==================================================== */
+const QUESTIONS=[
+  {
+    type:'mc', label:'Scelta multipla',
+    q:'In quale anno e in quale luogo nasce la Apple?',
+    opts:['Nel 1976, in un garage in California','Nel 1980, in una grande fabbrica','Nel 1995, in un’università','Nel 1955, a New York'],
+    correct:0,
+    tip:'Steve aveva 21 anni e fondò Apple nel 1976, in un garage, insieme a un amico.'
+  },
+  {
+    type:'tf', label:'Vero o Falso',
+    q:'Steve Jobs è stato licenziato dalla stessa azienda che aveva fondato.',
+    correct:true,
+    tip:'Vero: nel 1985 la Apple licenziò Jobs, 9 anni dopo che lui l’aveva fondata.'
+  },
+  {
+    type:'fill', label:'Completa gli spazi',
+    q:'Nel 1984 Steve Jobs lancia un computer moderno e intuitivo. Come si chiama?',
+    accept:['macintosh','mcintosh','mac'],
+    placeholder:'Scrivi il nome…',
+    tip:'È il Macintosh: il suo spot fu diretto dal regista Ridley Scott.'
+  },
+  {
+    type:'reorder', label:'Riordina la linea del tempo',
+    q:'Metti questi eventi nell’ordine giusto, dal primo all’ultimo.',
+    items:[
+      {t:'Apple nasce in un garage', o:0},
+      {t:'Lancio del Macintosh', o:1},
+      {t:'Jobs viene licenziato da Apple', o:2},
+      {t:'Jobs torna alla guida di Apple', o:3},
+      {t:'Arrivano iPhone e iPad', o:4}
+    ],
+    tip:'1976 garage → 1984 Macintosh → 1985 licenziamento → 1995 ritorno → anni 2000 iPhone/iPad.'
+  },
+  {
+    type:'match', label:'Abbina',
+    q:'Collega ogni elemento alla sua descrizione.',
+    left:[{id:'a',t:'1976'},{id:'b',t:'Ridley Scott'},{id:'c',t:'NeXT'},{id:'d',t:'Tim Cook'}],
+    right:[{id:'a',t:'Nasce Apple in un garage'},{id:'b',t:'Regista dello spot del Macintosh'},{id:'c',t:'L’azienda fondata dopo il licenziamento'},{id:'d',t:'Prende la guida di Apple nel 2011'}],
+    tip:'1976=nascita Apple, Ridley Scott=spot Macintosh, NeXT=dopo il 1985, Tim Cook=successore di Jobs.'
+  },
+  {
+    type:'mc', label:'Scelta multipla',
+    q:'Con quali parole Steve Jobs chiuse il celebre discorso di Stanford nel 2005?',
+    opts:['“Pensa differente”','“Siate affamati, siate folli”','“Il cliente ha sempre ragione”','“Un passo alla volta”'],
+    correct:1,
+    tip:'“Stay hungry, stay foolish”: non smettere mai di imparare e di osare.'
+  }
+];
+
+let qi=0, score=0;
+const answered=new Array(QUESTIONS.length).fill(false);
+const gotRight=new Array(QUESTIONS.length).fill(false);
+const state=QUESTIONS.map(()=>({}));
+
+const area=document.getElementById('quizArea');
+const checkBtn=document.getElementById('checkBtn');
+const nextBtn=document.getElementById('nextBtn');
+const prevBtn=document.getElementById('prevBtn');
+const progBar=document.getElementById('progBar');
+const qCounter=document.getElementById('qCounter');
+const scoreBadge=document.getElementById('scoreBadge');
+
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+const checkSVG='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+const upSVG='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>';
+const downSVG='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>';
+
+function render(){
+  const Q=QUESTIONS[qi];
+  const st=state[qi];
+  const locked=answered[qi];
+  let html='<div class="q"><div class="qtype">'+esc(Q.label)+'</div><div class="qtext">'+esc(Q.q)+'</div>';
+
+  if(Q.type==='mc'){
+    html+='<div class="opts">';
+    Q.opts.forEach((o,i)=>{
+      let cls='opt';
+      if(locked){ if(i===Q.correct)cls+=' correct'; else if(i===st.sel)cls+=' wrong'; }
+      else if(st.sel===i)cls+=' correct';
+      html+='<button class="opt '+(cls.replace('opt',''))+'" data-i="'+i+'" '+(locked?'disabled':'')+'><span class="mk">'+((locked&&i===Q.correct)||(!locked&&st.sel===i)?checkSVG:'')+'</span><span>'+esc(o)+'</span></button>';
+    });
+    html+='</div>';
+  }
+  else if(Q.type==='tf'){
+    html+='<div class="tf">';
+    [['Vero',true],['Falso',false]].forEach(([lbl,val])=>{
+      let cls='opt';
+      if(locked){ if(val===Q.correct)cls+=' correct'; else if(st.sel===val)cls+=' wrong'; }
+      else if(st.sel===val)cls+=' correct';
+      html+='<button class="'+cls+'" data-v="'+val+'" '+(locked?'disabled':'')+'>'+lbl+'</button>';
+    });
+    html+='</div>';
+  }
+  else if(Q.type==='fill'){
+    html+='<div class="fill"><div class="row"><input type="text" id="fillIn" placeholder="'+esc(Q.placeholder)+'" value="'+esc(st.val||'')+'" '+(locked?'disabled':'')+' autocomplete="off"></div></div>';
+  }
+  else if(Q.type==='reorder'){
+    if(!st.order)st.order=Q.items.map((_,i)=>i);
+    html+='<div class="reorder" id="reorder">';
+    st.order.forEach((idx,pos)=>{
+      const it=Q.items[idx];
+      let cls='ro-item';
+      if(locked)cls+=(it.o===pos?' correct':' wrong');
+      html+='<div class="'+cls+'"><span class="num">'+(pos+1)+'</span><span class="lbl">'+esc(it.t)+'</span>'+
+        (locked?'':'<span class="ro-btns"><button data-mv="up" data-pos="'+pos+'" '+(pos===0?'disabled style="opacity:.3"':'')+'>'+upSVG+'</button><button data-mv="down" data-pos="'+pos+'" '+(pos===st.order.length-1?'disabled style="opacity:.3"':'')+'>'+downSVG+'</button></span>')+
+        '</div>';
+    });
+    html+='</div>';
+  }
+  else if(Q.type==='match'){
+    if(!st.pairs)st.pairs={};
+    html+='<div class="match"><div class="col"><h5>Elemento</h5>';
+    Q.left.forEach(l=>{
+      const matched=st.pairs[l.id]!=null;
+      let cls='mitem';
+      if(matched)cls+=' done'; else if(st.selLeft===l.id)cls+=' sel';
+      html+='<button class="'+cls+'" data-side="L" data-id="'+l.id+'" '+(matched||locked?'disabled':'')+'><span class="tag">'+esc(l.t)+'</span></button>';
+    });
+    html+='</div><div class="col"><h5>Descrizione</h5>';
+    Q.right.forEach(r=>{
+      const usedBy=Object.keys(st.pairs).find(k=>st.pairs[k]===r.id);
+      let cls='mitem';
+      if(usedBy)cls+=' done';
+      html+='<button class="'+cls+'" data-side="R" data-id="'+r.id+'" '+(usedBy||locked?'disabled':'')+'>'+esc(r.t)+'</button>';
+    });
+    html+='</div></div>';
+  }
+
+  html+='<div class="feedback" id="fb"></div></div>';
+  area.innerHTML=html;
+  bind();
+  if(locked)showFeedback();
+  updateNav();
+  updateMeta();
+}
+
+function bind(){
+  const Q=QUESTIONS[qi], st=state[qi];
+  if(Q.type==='mc'){
+    area.querySelectorAll('.opt').forEach(b=>b.addEventListener('click',()=>{st.sel=+b.dataset.i;render()}));
+  }else if(Q.type==='tf'){
+    area.querySelectorAll('.opt').forEach(b=>b.addEventListener('click',()=>{st.sel=(b.dataset.v==='true');render()}));
+  }else if(Q.type==='fill'){
+    const inp=area.querySelector('#fillIn');
+    inp.addEventListener('input',()=>{st.val=inp.value;updateNav()});
+    inp.addEventListener('keydown',e=>{if(e.key==='Enter'&&!checkBtn.disabled&&checkBtn.style.display!=='none')doCheck()});
+  }else if(Q.type==='reorder'){
+    area.querySelectorAll('.ro-btns button').forEach(b=>b.addEventListener('click',()=>{
+      const pos=+b.dataset.pos, dir=b.dataset.mv;
+      const swap=dir==='up'?pos-1:pos+1;
+      [st.order[pos],st.order[swap]]=[st.order[swap],st.order[pos]];
+      render();
+    }));
+  }else if(Q.type==='match'){
+    area.querySelectorAll('.mitem').forEach(b=>b.addEventListener('click',()=>{
+      const side=b.dataset.side,id=b.dataset.id;
+      if(side==='L'){ st.selLeft=(st.selLeft===id?null:id); }
+      else if(st.selLeft){ st.pairs[st.selLeft]=id; st.selLeft=null; }
+      render();
+    }));
+  }
+}
+
+function hasAnswer(){
+  const Q=QUESTIONS[qi], st=state[qi];
+  if(Q.type==='mc')return st.sel!=null;
+  if(Q.type==='tf')return st.sel!=null;
+  if(Q.type==='fill')return (st.val||'').trim().length>0;
+  if(Q.type==='reorder')return true;
+  if(Q.type==='match')return Object.keys(st.pairs||{}).length===Q.left.length;
+  return false;
+}
+
+function evaluate(){
+  const Q=QUESTIONS[qi], st=state[qi];
+  if(Q.type==='mc')return st.sel===Q.correct;
+  if(Q.type==='tf')return st.sel===Q.correct;
+  if(Q.type==='fill'){
+    const v=(st.val||'').trim().toLowerCase().replace(/[^a-z0-9à-ÿ ]/g,'');
+    return Q.accept.some(a=>v===a||v.includes(a));
+  }
+  if(Q.type==='reorder')return st.order.every((idx,pos)=>Q.items[idx].o===pos);
+  if(Q.type==='match')return Q.left.every(l=>st.pairs[l.id]===l.id);
+  return false;
+}
+
+function doCheck(){
+  if(!hasAnswer())return;
+  answered[qi]=true;
+  const ok=evaluate();
+  gotRight[qi]=ok;
+  if(ok)score++;
+  render();
+  updateScore();
+}
+
+function showFeedback(){
+  const Q=QUESTIONS[qi];
+  const fb=area.querySelector('#fb');
+  if(!fb)return;
+  const ok=gotRight[qi];
+  fb.className='feedback show '+(ok?'ok':'tip');
+  const icon=ok
+    ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>'
+    : '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"/><circle cx="12" cy="12" r="10"/></svg>';
+  fb.innerHTML=icon+'<div><b>'+(ok?'Esatto!':'Quasi!')+'</b> '+esc(Q.tip)+'</div>';
+}
+
+function updateScore(){ scoreBadge.textContent='Punti: '+score; }
+
+function updateMeta(){
+  progBar.style.width=((qi)/(QUESTIONS.length)*100)+'%';
+  qCounter.textContent='Domanda '+(qi+1)+' di '+QUESTIONS.length;
+}
+
+function updateNav(){
+  const locked=answered[qi];
+  prevBtn.style.visibility=qi===0?'hidden':'visible';
+  if(locked){
+    checkBtn.style.display='none';
+    nextBtn.style.display='inline-flex';
+    nextBtn.textContent=(qi===QUESTIONS.length-1)?'Vedi risultato ›':'Avanti ›';
+  }else{
+    checkBtn.style.display='inline-flex';
+    nextBtn.style.display='none';
+    checkBtn.disabled=!hasAnswer();
+  }
+}
+
+checkBtn.addEventListener('click',doCheck);
+prevBtn.addEventListener('click',()=>{ if(qi>0){qi--;render();} });
+nextBtn.addEventListener('click',()=>{
+  if(qi<QUESTIONS.length-1){ qi++; render(); }
+  else showResult();
+});
+
+function showResult(){
+  progBar.style.width='100%';
+  qCounter.textContent='Completato';
+  let msg;
+  if(score===QUESTIONS.length)msg='Perfetto! Conosci davvero la storia di Steve Jobs.';
+  else if(score>=QUESTIONS.length-2)msg='Ottimo lavoro! Ti sei ricordato quasi tutto.';
+  else if(score>=QUESTIONS.length/2)msg='Bel percorso. Rivedi la linea del tempo e riprova: andrai ancora meglio.';
+  else msg='Buon inizio! Riguarda il video e la storia, poi rifai il quiz.';
+  area.innerHTML='<div class="quiz-result"><div class="big">'+score+' / '+QUESTIONS.length+'</div><div class="msg">'+esc(msg)+'</div>'+
+    '<button class="btn btn-gold" id="retry">Rifai il quiz</button></div>';
+  checkBtn.style.display='none'; nextBtn.style.display='none'; prevBtn.style.visibility='hidden';
+  document.getElementById('retry').addEventListener('click',resetQuiz);
+}
+
+function resetQuiz(){
+  qi=0; score=0;
+  answered.fill(false); gotRight.fill(false);
+  for(let i=0;i<state.length;i++)state[i]={};
+  prevBtn.style.visibility='visible';
+  updateScore();
+  render();
+}
+
+/* ---------- RESTART PERCORSO ---------- */
+document.getElementById('restartBtn').addEventListener('click',()=>{ resetQuiz(); goTo('foto'); });
+
+/* init */
+updateScore();
+render();
+</script>
+</body>
+</html>
