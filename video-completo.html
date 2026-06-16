@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Steve Jobs — L'architetto del futuro digitale</title>
+<link rel="icon" type="image/jpeg" href="steve.jpg">
+<link rel="apple-touch-icon" href="steve.jpg">
+<style>
+:root{
+  --bg:#000000;
+  --bg2:#0a0a0c;
+  --panel:#1d1d1f;
+  --panel2:#161618;
+  --card:#1c1c1e;
+  --cardhi:#26262a;
+  --text:#f5f5f7;
+  --muted:#a1a1a6;
+  --dim:#6e6e73;
+  --line:rgba(255,255,255,.10);
+  --line2:rgba(255,255,255,.16);
+  --blue:#2997ff;
+  --blue-soft:rgba(41,151,255,.16);
+  --bar:54px;
+  --sf:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:var(--sf);
+  background:var(--bg);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow:hidden;
+}
+::selection{background:var(--blue-soft)}
+
+/* ---------- HEADER ---------- */
+.nav{
+  position:fixed;top:0;left:0;right:0;height:48px;z-index:50;
+  display:flex;align-items:center;gap:16px;padding:0 22px;
+  background:rgba(22,22,24,.72);
+  backdrop-filter:saturate(180%) blur(20px);
+  -webkit-backdrop-filter:saturate(180%) blur(20px);
+  border-bottom:1px solid var(--line);
+}
+.nav .apple{width:17px;height:21px;opacity:.92;flex:none}
+.nav .title{font-size:15px;font-weight:600;letter-spacing:-.01em}
+.nav .title span{color:var(--dim);font-weight:400}
+.nav .back{
+  margin-left:auto;display:inline-flex;align-items:center;gap:5px;
+  color:var(--blue);text-decoration:none;font-size:14px;font-weight:400;
+  padding:6px 12px;border-radius:980px;transition:background .2s;
+}
+.nav .back:hover{background:rgba(41,151,255,.12)}
+
+/* ---------- STAGE ---------- */
+.stage{
+  position:fixed;top:48px;left:0;right:0;bottom:0;
+  display:grid;grid-template-columns:minmax(0,1.45fr) minmax(360px,1fr);
+}
+
+/* ----- VIDEO SIDE ----- */
+.videoSide{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:32px 28px;gap:22px;min-width:0;
+  background:radial-gradient(120% 100% at 50% 0%,#161618 0%,#000 70%);
+  border-right:1px solid var(--line);
+}
+.hero-mini .eyebrow{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--dim);font-weight:600}
+.hero-mini h1{
+  font-size:clamp(22px,2.6vw,34px);font-weight:600;letter-spacing:-.025em;line-height:1.07;margin-top:6px;
+  background:linear-gradient(180deg,#fff,#c7c7cc);-webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero-mini p{color:var(--muted);font-size:14px;margin-top:8px;max-width:60ch;line-height:1.5}
+
+/* player */
+.player{position:relative;width:100%;aspect-ratio:16/9;border-radius:18px;overflow:hidden;background:#000;box-shadow:0 24px 60px rgba(0,0,0,.6);border:1px solid var(--line2)}
+.player iframe,.player .yt-frame{position:absolute;inset:0;width:100%;height:100%;border:0;pointer-events:none}
+.player .yt-click{position:absolute;left:0;right:0;top:0;bottom:var(--bar);z-index:2;cursor:pointer}
+.player .yt-cover{position:absolute;inset:0;z-index:4;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.player .yt-cover::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15),rgba(0,0,0,.55))}
+.player .yt-play{position:relative;z-index:2;width:84px;height:84px;border-radius:50%;background:rgba(255,255,255,.18);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.4);display:grid;place-items:center;padding-left:6px;transition:.22s ease}
+.player .yt-cover:hover .yt-play{transform:scale(1.07);background:rgba(255,255,255,.28)}
+.player .yt-label{position:absolute;left:20px;bottom:18px;z-index:2;font-size:14px;font-weight:600;letter-spacing:-.01em;text-shadow:0 1px 8px rgba(0,0,0,.7)}
+.player .yt-bar{position:absolute;left:0;right:0;bottom:0;height:var(--bar);z-index:5;display:flex;align-items:center;gap:14px;padding:0 16px;background:linear-gradient(transparent,rgba(0,0,0,.82));opacity:0;transition:.25s;pointer-events:none}
+.player.playing .yt-bar,.player:hover .yt-bar{opacity:1;pointer-events:auto}
+.yt-btn{flex:none;width:34px;height:34px;border-radius:50%;border:none;background:rgba(255,255,255,.14);color:#fff;cursor:pointer;display:grid;place-items:center;transition:.15s}
+.yt-btn:hover{background:rgba(255,255,255,.26)}
+.yt-seek{flex:1;height:6px;background:rgba(255,255,255,.22);border-radius:980px;cursor:pointer;position:relative;overflow:hidden}
+.yt-seek>i{display:block;height:100%;width:0;background:var(--blue);border-radius:980px}
+.yt-time{flex:none;font-size:12px;color:#fff;font-variant-numeric:tabular-nums;letter-spacing:.01em;opacity:.9}
+
+.now-playing{display:flex;align-items:center;gap:12px;padding:14px 18px;background:var(--panel2);border:1px solid var(--line);border-radius:14px;min-height:62px}
+.now-playing .dotwrap{flex:none;width:34px;height:34px;border-radius:50%;background:var(--blue-soft);display:grid;place-items:center}
+.now-playing .npk{font-size:12px;color:var(--dim);letter-spacing:.04em;text-transform:uppercase;font-weight:600}
+.now-playing .npv{font-size:15px;font-weight:600;letter-spacing:-.01em;margin-top:1px}
+
+/* ----- MAP SIDE ----- */
+.mapSide{position:relative;overflow-y:auto;background:var(--bg2);-webkit-overflow-scrolling:touch}
+.mapSide::-webkit-scrollbar{width:9px}
+.mapSide::-webkit-scrollbar-thumb{background:rgba(255,255,255,.14);border-radius:980px;border:2px solid transparent;background-clip:padding-box}
+.mapHead{position:sticky;top:0;z-index:6;padding:20px 26px 14px;background:linear-gradient(180deg,var(--bg2) 70%,transparent);backdrop-filter:blur(6px)}
+.mapHead h2{font-size:20px;font-weight:600;letter-spacing:-.02em}
+.mapHead p{font-size:13px;color:var(--muted);margin-top:3px}
+.mapHead .progress{margin-top:14px;height:4px;border-radius:980px;background:rgba(255,255,255,.12);overflow:hidden}
+.mapHead .progress>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--blue),#5ac8fa);transition:width .3s linear}
+
+.chapters{padding:6px 22px 60vh}
+.chapter{margin-top:24px}
+.chapter:first-child{margin-top:6px}
+.ch-label{display:flex;align-items:center;gap:10px;margin:0 4px 12px;color:var(--dim)}
+.ch-label .ch-num{font-size:12px;font-weight:700;width:24px;height:24px;border-radius:50%;border:1px solid var(--line2);display:grid;place-items:center;color:var(--muted)}
+.ch-label .ch-t{font-size:13px;font-weight:600;letter-spacing:.02em;text-transform:uppercase;color:var(--muted)}
+
+.kw{
+  display:flex;gap:14px;width:100%;text-align:left;cursor:pointer;
+  background:var(--card);border:1px solid var(--line);border-radius:16px;
+  padding:15px 16px;margin-bottom:10px;color:var(--text);
+  transition:transform .22s cubic-bezier(.2,.7,.2,1),background .22s,border-color .22s,box-shadow .22s,opacity .35s;
+  opacity:.55;
+}
+.kw:hover{background:var(--cardhi);opacity:1;transform:translateX(2px)}
+.kw .kw-ic{flex:none;width:38px;height:38px;border-radius:11px;background:var(--panel);display:grid;place-items:center;color:var(--muted);transition:.22s}
+.kw .kw-body{min-width:0;flex:1}
+.kw .kw-k{font-size:15.5px;font-weight:600;letter-spacing:-.01em;display:flex;align-items:center;gap:8px}
+.kw .kw-time{font-size:11px;color:var(--dim);font-variant-numeric:tabular-nums;font-weight:500}
+.kw .kw-d{font-size:13.5px;line-height:1.5;color:var(--muted);margin-top:5px}
+.kw.seen{opacity:.9}
+.kw.active{
+  opacity:1;background:linear-gradient(180deg,rgba(41,151,255,.14),rgba(41,151,255,.05));
+  border-color:rgba(41,151,255,.55);box-shadow:0 0 0 1px rgba(41,151,255,.35),0 14px 36px rgba(41,151,255,.14);
+  transform:translateX(0) scale(1.012);
+}
+.kw.active .kw-ic{background:var(--blue);color:#fff}
+.kw.active .kw-d{color:#d9e8ff}
+
+.endcard{margin:20px 4px;padding:22px;border-radius:16px;border:1px solid var(--line);background:var(--panel2);text-align:center}
+.endcard .q{font-size:18px;font-weight:600;letter-spacing:-.01em;line-height:1.4}
+.endcard .a{font-size:13px;color:var(--muted);margin-top:8px}
+
+/* hint chip */
+.hint-chip{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);z-index:9;background:rgba(40,40,44,.9);backdrop-filter:blur(14px);border:1px solid var(--line2);color:var(--text);font-size:12.5px;padding:9px 16px;border-radius:980px;display:flex;align-items:center;gap:8px;box-shadow:0 10px 30px rgba(0,0,0,.5);transition:opacity .4s;pointer-events:none}
+.hint-chip.hide{opacity:0}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:860px){
+  body{overflow:auto}
+  .stage{position:static;display:block;height:auto}
+  .videoSide{position:sticky;top:48px;z-index:30;border-right:none;border-bottom:1px solid var(--line);padding:16px 14px;gap:14px;background:#000}
+  .hero-mini{display:none}
+  .now-playing{display:none}
+  .mapSide{overflow:visible}
+  .mapHead{top:48px}
+  .chapters{padding-bottom:80px}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="nav">
+  <svg class="apple" viewBox="0 0 17 21" fill="#f5f5f7" aria-hidden="true"><path d="M14.04 11.13c-.02-2.2 1.8-3.26 1.88-3.31-1.03-1.5-2.62-1.71-3.19-1.73-1.36-.14-2.65.8-3.34.8-.69 0-1.75-.78-2.88-.76-1.48.02-2.85.86-3.61 2.19-1.54 2.67-.39 6.62 1.11 8.79.73 1.06 1.6 2.25 2.74 2.21 1.1-.04 1.51-.71 2.84-.71 1.32 0 1.7.71 2.86.69 1.18-.02 1.93-1.08 2.65-2.15.84-1.23 1.18-2.42 1.2-2.48-.03-.01-2.3-.88-2.32-3.5zM11.86 4.36c.61-.74 1.02-1.77.91-2.79-.88.04-1.94.59-2.57 1.32-.56.65-1.06 1.69-.93 2.69.98.08 1.98-.5 2.59-1.22z"/></svg>
+  <div class="title">Steve Jobs <span>· L'architetto del futuro digitale</span></div>
+  <a class="back" href="index.html">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    Percorso
+  </a>
+</header>
+
+<div class="stage">
+  <!-- LEFT: VIDEO -->
+  <section class="videoSide">
+    <div class="hero-mini">
+      <div class="eyebrow">Video completo · Guarda e scopri</div>
+      <h1>Una storia in dieci capitoli</h1>
+      <p>Mentre il video scorre, la mappa qui accanto si illumina sul concetto chiave di quel momento. Tocca una parola per saltare al punto esatto del video.</p>
+    </div>
+
+    <div class="player" id="player" data-yt="0EHOAQlE2UE">
+      <div class="yt-frame"></div>
+      <div class="yt-click"></div>
+      <div class="yt-cover">
+        <div class="yt-play"><svg width="32" height="32" viewBox="0 0 24 24" fill="#fff" stroke="none"><polygon points="6 4 20 12 6 20 6 4"/></svg></div>
+        <div class="yt-label">Steve Jobs — documentario</div>
+      </div>
+      <div class="yt-bar">
+        <button class="yt-btn yt-pp" aria-label="Play o pausa"></button>
+        <div class="yt-seek"><i></i></div>
+        <span class="yt-time">0:00</span>
+        <button class="yt-btn yt-mute" aria-label="Attiva o disattiva audio"></button>
+      </div>
+      <div class="hint-chip" id="hintChip">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+        Premi play: la mappa si sincronizza
+      </div>
+    </div>
+
+    <div class="now-playing" id="nowPlaying">
+      <div class="dotwrap">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+      </div>
+      <div>
+        <div class="npk" id="npk">In ascolto</div>
+        <div class="npv" id="npv">Premi play per iniziare</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RIGHT: KEYWORD MAP -->
+  <section class="mapSide" id="mapSide">
+    <div class="mapHead">
+      <h2>Mappa delle parole chiave</h2>
+      <p id="mapSub">Sincronizzata con il video</p>
+      <div class="progress"><i id="mapProg"></i></div>
+    </div>
+    <div class="chapters" id="chapters"></div>
+  </section>
+</div>
+
+<script>
+"use strict";
+
+/* ============================================================
+   CONTENUTO — 6 capitoli, parole chiave con spiegazione.
+   "p" = posizione sulla timeline (0..1): il tempo reale viene
+   calcolato a runtime come p * durata del video. Facile da tarare.
+   ============================================================ */
+/* Timestamp reali (in secondi) ricavati dalla trascrizione SRT del video.
+   Le parole chiave seguono l'ordine cronologico del documentario. */
+const CHAPTERS=[
+  { n:1, title:"Il Visionario", icon:"eye", items:[
+    {k:"Visione antropocentrica", t:27, d:"Capì prima di tutti che il computer doveva smettere di essere una macchina da calcolo per diventare uno strumento personale, un'estensione dell'identità umana."},
+    {k:"Carisma e comunicazione", t:59, d:"Non “vendeva” prodotti: presentava “finestre sul futuro”. Un precursore carismatico che trasformava un oggetto di silicio nell'ultima conquista dell'umanità."},
+    {k:"Leader culturale", t:78, d:"Jobs non progettava circuiti: si considerava un leader culturale del suo tempo, capace di interpretare i desideri latenti della società. Non serve essere ingegneri per guidare una rivoluzione."},
+    {k:"Ambizione d'élite", t:87, d:"Si sentiva un eletto, al pari di Newton o Shakespeare. L'eccellenza era l'unico parametro: chi non mirava al massimo, per lui, era una nullità."}
+  ]},
+  { n:2, title:"Le Origini e Wozniak", icon:"user", items:[
+    {k:"Nascita e adozione (1955)", t:121, d:"San Francisco, 24 febbraio 1955. Dato in adozione, cresce con Paul e Clara Jobs: una famiglia disposta a ogni sacrificio pur di farlo studiare."},
+    {k:"Steve Wozniak, il genio tecnico", t:211, d:"Il vicino di casa, cinque anni più grande: hardware e architettura dei chip. Costruiva sistemi complessi senza libri né maestri — un talento che non si può insegnare."},
+    {k:"La Blue Box", t:282, d:"Un dispositivo per telefonare gratis in tutto il mondo, aggirando la rete telefonica. Non semplice pirateria: la prova che la tecnologia può bypassare i sistemi stabiliti — hacking come innovazione."}
+  ]},
+  { n:3, title:"Nasce il Personal Computer", icon:"cpu", items:[
+    {k:"La scatola di legno (1976)", t:328, d:"Una buffa scatola di legno costruita da Wozniak: in realtà è il primo personal computer della storia. Mentre i computer riempivano intere stanze, lui lo metteva su un tavolo."},
+    {k:"“Fonderemo una società”", t:396, d:"Davanti all'invenzione dell'amico, Jobs ha un solo pensiero: immetterla sul mercato. «Fonderemo una società.» È l'unione di tecnologia e imprenditorialità a fare la differenza."},
+    {k:"Il nome Apple", t:424, d:"Dal movimento hippie, da un viaggio in India e da un meleto dove mangiavano mele da fruttariani. La mela è anche un omaggio a Newton; il morso, il tocco distintivo."}
+  ]},
+  { n:4, title:"Apple I e il Garage", icon:"home", items:[
+    {k:"The Byte Shop", t:493, d:"Il primo ordine: 100 unità dell'Apple I per The Byte Shop, uno dei primi negozi di computer della Silicon Valley."},
+    {k:"L'affare da 50.000$", t:553, d:"100 computer a 500 dollari l'uno: 50.000 dollari, il doppio dello stipendio annuo di Wozniak alla HP. E i computer erano ancora tutti da costruire."},
+    {k:"Il garage di Cupertino", t:583, d:"Dalla camera della sorella al soggiorno, fino al garage dei genitori a Cupertino: qui, con l'amico Dan Kottke alle saldature, nasce una delle aziende più grandi del mondo."},
+    {k:"Apple I, ancora primitivo", t:674, d:"Venduto senza schermo e senza tastiera: per usarlo servivano buone conoscenze tecniche. Non ancora un vero personal computer per tutti."}
+  ]},
+  { n:5, title:"Apple II: la Democratizzazione", icon:"chart", items:[
+    {k:"Vendere alle masse", t:719, d:"Jobs capisce che una clientela di soli esperti non basta. La nuova ambizione: vendere personal computer al grande pubblico. Chiede a Wozniak di rendere la macchina accessibile a tutti."},
+    {k:"Apple II", t:733, d:"Racchiuso in una scocca di plastica con monitor e tastiera: il primo personal computer completo e pronto all'uso. La scatola di legno è diventata un oggetto desiderabile."},
+    {k:"Marketing: l'oggetto domestico", t:803, d:"La prima campagna pubblicitaria mostra l'Apple II comodamente in cucina. Vent'anni prima di Internet, Jobs porta la tecnologia nella vita quotidiana."},
+    {k:"300.000 unità e la Borsa (1980)", t:844, d:"L'Apple II conquista l'America — 300.000 esemplari, persino nelle scuole. Nel 1980 la quotazione in Borsa: i due Steve diventano milionari a 25 e 30 anni."}
+  ]},
+  { n:6, title:"La Sfida a IBM e il Macintosh", icon:"split", items:[
+    {k:"La rivalità con IBM", t:1008, d:"Nel 1981 IBM, colosso dei mainframe, entra nei personal computer ispirandosi all'Apple II. Jobs lo disprezza, ma il marchio IBM da solo è una garanzia: annientarlo diventa la sua ossessione."},
+    {k:"John Sculley: “acqua zuccherata”", t:1112, d:"Per battere IBM, Jobs strappa alla Pepsi il manager John Sculley con una sfida diventata celebre: «Vuoi passare la vita a vendere acqua zuccherata o cambiare il mondo?» — Purpose-Driven Innovation."},
+    {k:"Il Macintosh (1984)", t:1159, d:"Un computer talmente all'avanguardia da battere IBM. Jobs pretende dal team una dedizione totale: «90 ore alla settimana e mi piace.»"},
+    {k:"Lo spot “1984” (Ridley Scott)", t:1241, d:"Ispirato al romanzo di Orwell: IBM è il Grande Fratello, Apple la liberazione. Un solo passaggio in TV, e il Mac diventa leggenda — pur senza mai apparire nello spot."},
+    {k:"Il lancio del Mac", t:1352, d:"24 gennaio 1984: davanti a una folla in delirio, Jobs mette in scena la sua autoconsacrazione. Per la prima volta un computer parla e disegna."},
+    {k:"Mouse, icone e finestre", t:1482, d:"«For the rest of us.» Per la prima volta su uno schermo: icone, menu e finestre, guidati dal mouse. Un sistema operativo avanti dieci anni: nasce la User Experience."}
+  ]},
+  { n:7, title:"Il Tradimento e la Caduta", icon:"alert", items:[
+    {k:"Bill Gates & Windows", t:1523, d:"Accecato dalla guerra con IBM, Jobs non vede la vera minaccia. Microsoft, allora piccola, carpisce i segreti del Mac e lancia Windows. Lo scontro: «Ci hai traditi, come possiamo fidarci di te?»"},
+    {k:"Il licenziamento (1985)", t:1788, d:"Le vendite del Mac crollano sotto i colpi di Windows. Paradosso: proprio Sculley, l'uomo che Jobs aveva voluto, lo caccia dall'azienda che aveva fondato. Ha 30 anni."}
+  ]},
+  { n:8, title:"Esilio e Rinascita", icon:"rebirth", items:[
+    {k:"NeXT & Pixar", t:1845, d:"Jobs non si arrende: fonda NeXT e acquista Pixar, che diventerà un colosso del cinema d'animazione — Toy Story, Alla ricerca di Nemo, Gli Incredibili."},
+    {k:"Apple sull'orlo del fallimento", t:1957, d:"Senza Jobs, Apple precipita: quota di mercato al 3%, clienti in fuga. «La caduta di un'icona americana», titola Business Week. Servono misure drastiche."},
+    {k:"Il ritorno e il patto con Gates (1997)", t:2098, d:"Jobs torna e sigla un accordo a sorpresa con Gates: un assegno da 150 milioni di dollari e software Microsoft garantito. Un “patto col diavolo” per salvare Apple."}
+  ]},
+  { n:9, title:"La Rinascita dei Prodotti", icon:"spark", items:[
+    {k:"iMac (1998)", t:2174, d:"All-in-one colorato, via tower e floppy, modem integrato: l'iMac inaugura l'era di Internet rendendola semplice ed estetica. I colori di Apple tornano a splendere."},
+    {k:"iPod e iTunes (2001)", t:2246, d:"Mille canzoni in tasca. Con iTunes, Apple impone il prezzo di 99 centesimi a brano e ridisegna l'intera industria discografica."},
+    {k:"Diagnosi e discorso di Stanford", t:2384, d:"Nel 2004 la diagnosi di cancro. Alla Stanford (2005) la sua lezione di vita: non sprecare il tempo vivendo la vita di qualcun altro. L'urgenza alimenta gli anni più creativi."}
+  ]},
+  { n:10, title:"iPhone, iPad e l'Eredità", icon:"flame", items:[
+    {k:"iPhone (2007)", t:2467, d:"9 gennaio 2007: interfaccia multi-touch totale. Il telefono diventa un centro di calcolo e comunicazione universale. Code fuori dai negozi: 75 milioni venduti in tre anni."},
+    {k:"iPad (2010)", t:2544, d:"Il tablet “Post-PC”: accolto con scetticismo, diventa un successo clamoroso. Per molti segna la “morte” del personal computer tradizionale a favore della massima semplicità."},
+    {k:"“Facile come un tostapane”", t:2678, d:"Mac, iMac, iPod, iPhone, iPad: la promessa di rendere il computer facile come un elettrodomestico. La tecnologia entra, invisibile, nella vita di tutti."},
+    {k:"Stay Hungry, Stay Foolish", t:2733, d:"5 ottobre 2011: Jobs si spegne. «Siate affamati, siate folli.» La sua eredità non è solo nei dispositivi, ma nella prova che visione e determinazione possono piegare la storia."}
+  ]}
+];
+
+/* ---------- ICONE (SF-style, stroke) ---------- */
+const ICONS={
+  eye:'<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+  wrench:'<path d="M14.7 6.3a4 4 0 0 0-5.2 5.2L4 17l3 3 5.5-5.5a4 4 0 0 0 5.2-5.2l-2.6 2.6-2.1-2.1z"/>',
+  home:'<path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9.5 21v-6h5v6"/>',
+  split:'<path d="M6 3v6a3 3 0 0 0 3 3h6a3 3 0 0 1 3 3v6"/><path d="M3 6l3-3 3 3"/><path d="M15 21l3-3-3-3" transform="translate(3 0)"/>',
+  spark:'<path d="M12 2v5M12 17v5M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5 19 19M5 19l1.5-1.5M17.5 6.5 19 5"/><circle cx="12" cy="12" r="3.5"/>',
+  flame:'<path d="M12 3s5 4 5 9a5 5 0 0 1-10 0c0-1.5.7-2.8 1.5-3.8C9 9.5 9 8 8.5 6.5 11 7 12 5 12 3z"/>',
+  clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  user:'<circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/>',
+  cpu:'<rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M10 3v3M14 3v3M10 18v3M14 18v3M3 10h3M3 14h3M18 10h3M18 14h3"/>',
+  chart:'<path d="M3 3v18h18"/><path d="M7 14l3-4 3 2 5-7"/>',
+  alert:'<path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/>',
+  rebirth:'<path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/>'
+};
+
+/* ---------- BUILD MAP ---------- */
+const chaptersEl=document.getElementById('chapters');
+const flat=[]; // {el, t, k, d, chTitle, timeEl}
+CHAPTERS.forEach(ch=>{
+  const wrap=document.createElement('div');
+  wrap.className='chapter';
+  wrap.innerHTML='<div class="ch-label"><span class="ch-num">'+ch.n+'</span><span class="ch-t">'+esc(ch.title)+'</span></div>';
+  ch.items.forEach(it=>{
+    const b=document.createElement('button');
+    b.className='kw';
+    b.innerHTML=
+      '<span class="kw-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+(ICONS[ch.icon]||ICONS.clock)+'</svg></span>'+
+      '<span class="kw-body"><span class="kw-k">'+esc(it.k)+' <span class="kw-time" data-time>--:--</span></span><span class="kw-d">'+esc(it.d)+'</span></span>';
+    wrap.appendChild(b);
+    flat.push({el:b, t:it.t, k:it.k, d:it.d, chTitle:ch.title, timeEl:b.querySelector('[data-time]')});
+  });
+  chaptersEl.appendChild(wrap);
+});
+
+// chiusura metacognitiva
+const end=document.createElement('div');
+end.className='endcard';
+end.innerHTML='<div class="q">E tu, cosa porti con te?</div><div class="a">Tra tutti questi concetti, quale ti aiuta di più a capire perché Steve Jobs ha cambiato la storia? Torna al percorso e scrivilo nella sezione “Rifletti”.</div>';
+chaptersEl.appendChild(end);
+
+// sottotitolo dinamico: il numero di concetti segue sempre la mappa
+(function(){const s=document.getElementById('mapSub');if(s)s.textContent='Sincronizzata con il video · '+flat.length+' concetti';})();
+
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+function fmtT(t){t=Math.floor(t||0);const m=Math.floor(t/60),s=t%60;return m+':'+(s<10?'0':'')+s;}
+
+/* ============================================================
+   PLAYER YOUTUBE INTEGRATO (no resize, no exit, no distrazioni)
+   + SINCRONIZZAZIONE MAPPA
+   ============================================================ */
+const playPath='<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff" stroke="none"><polygon points="6 4 20 12 6 20 6 4"/></svg>';
+const pausePath='<svg width="15" height="15" viewBox="0 0 24 24" fill="#fff" stroke="none"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
+const volPath='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a9 9 0 0 1 0 14"/></svg>';
+const mutePath='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>';
+
+const el=document.getElementById('player');
+const vid=el.dataset.yt;
+const cover=el.querySelector('.yt-cover');
+const frame=el.querySelector('.yt-frame');
+const pp=el.querySelector('.yt-pp');
+const muteBtn=el.querySelector('.yt-mute');
+const seek=el.querySelector('.yt-seek');
+const seekFill=seek.querySelector('i');
+const timeEl=el.querySelector('.yt-time');
+const clickLayer=el.querySelector('.yt-click');
+const hintChip=document.getElementById('hintChip');
+const mapSide=document.getElementById('mapSide');
+const mapProg=document.getElementById('mapProg');
+const npk=document.getElementById('npk');
+const npv=document.getElementById('npv');
+
+let player=null,timer=null,dur=0,activeIdx=-1;
+
+(function(){
+  const test=new Image();
+  test.onload=function(){ if(test.naturalWidth>=600) cover.style.backgroundImage="url('https://img.youtube.com/vi/"+vid+"/sddefault.jpg')"; };
+  test.src="https://img.youtube.com/vi/"+vid+"/sddefault.jpg";
+  cover.style.backgroundImage="url('https://img.youtube.com/vi/"+vid+"/hqdefault.jpg')";
+})();
+pp.innerHTML=playPath; muteBtn.innerHTML=volPath;
+
+let ytReady=false; const ytQueue=[];
+window.onYouTubeIframeAPIReady=function(){ytReady=true;ytQueue.forEach(f=>f());ytQueue.length=0;};
+(function(){const s=document.createElement('script');s.src='https://www.youtube.com/iframe_api';document.head.appendChild(s);})();
+function whenYT(f){ytReady?f():ytQueue.push(f);}
+
+function setPP(p){pp.innerHTML=p?pausePath:playPath;}
+function setTimes(){ flat.forEach(o=>{o.timeEl.textContent=fmtT(o.t);}); }
+setTimes(); // i timestamp sono assoluti: mostrali subito, senza attendere la durata
+
+function start(){
+  cover.style.display='none';
+  hintChip.classList.add('hide');
+  whenYT(function(){
+    player=new YT.Player(frame,{
+      videoId:vid,
+      playerVars:{rel:0,modestbranding:1,controls:0,disablekb:1,fs:0,iv_load_policy:3,playsinline:1,enablejsapi:1},
+      events:{
+        'onReady':function(e){dur=e.target.getDuration()||0;setTimes();e.target.playVideo();},
+        'onStateChange':function(e){
+          if(e.data===YT.PlayerState.PLAYING){el.classList.add('playing');setPP(true);startTimer();if(!dur){dur=player.getDuration()||0;setTimes();}}
+          else if(e.data===YT.PlayerState.PAUSED){el.classList.remove('playing');setPP(false);stopTimer();}
+          else if(e.data===YT.PlayerState.ENDED){el.classList.remove('playing');setPP(false);stopTimer();}
+        }
+      }
+    });
+  });
+}
+function startTimer(){stopTimer();timer=setInterval(tick,400);}
+function stopTimer(){if(timer){clearInterval(timer);timer=null;}}
+
+function tick(){
+  if(!player||!player.getCurrentTime)return;
+  const ct=player.getCurrentTime();
+  if(!dur){dur=player.getDuration()||0;setTimes();}
+  const frac=dur?ct/dur:0;
+  seekFill.style.width=(frac*100)+'%';
+  timeEl.textContent=fmtT(ct)+' / '+fmtT(dur);
+  mapProg.style.width=(frac*100)+'%';
+  // trova l'ultima parola chiave il cui momento (in secondi) è già passato
+  let idx=-1;
+  for(let i=0;i<flat.length;i++){ if(flat[i].t<=ct+0.25)idx=i; else break; }
+  if(idx!==activeIdx) setActive(idx);
+}
+
+function setActive(idx){
+  activeIdx=idx;
+  flat.forEach((o,i)=>{
+    o.el.classList.toggle('active',i===idx);
+    o.el.classList.toggle('seen',i<idx);
+  });
+  if(idx>=0){
+    const o=flat[idx];
+    npk.textContent=o.chTitle;
+    npv.textContent=o.k;
+    scrollToCard(o.el);
+  }else{
+    npk.textContent='In ascolto';
+    npv.textContent='Premi play per iniziare';
+  }
+}
+
+function scrollToCard(card){
+  if(window.matchMedia('(max-width:860px)').matches)return; // su mobile niente auto-scroll forzato
+  const top=card.getBoundingClientRect().top - mapSide.getBoundingClientRect().top + mapSide.scrollTop - mapSide.clientHeight*0.34;
+  mapSide.scrollTo({top:Math.max(0,top),behavior:'smooth'});
+}
+
+function toggle(){ if(!player||!player.getPlayerState)return; player.getPlayerState()===YT.PlayerState.PLAYING?player.pauseVideo():player.playVideo(); }
+
+cover.addEventListener('click',start);
+clickLayer.addEventListener('click',toggle);
+pp.addEventListener('click',toggle);
+muteBtn.addEventListener('click',function(){if(!player||!player.isMuted)return;if(player.isMuted()){player.unMute();muteBtn.innerHTML=volPath;}else{player.mute();muteBtn.innerHTML=mutePath;}});
+seek.addEventListener('click',function(e){if(!player||!dur)return;const r=seek.getBoundingClientRect();player.seekTo(Math.max(0,Math.min(1,(e.clientX-r.left)/r.width))*dur,true);});
+
+// click su parola chiave -> salta a quel momento e parte
+flat.forEach((o,i)=>{
+  o.el.addEventListener('click',function(){
+    if(!player){ start(); whenYT(()=>{ const wait=setInterval(()=>{ if(player&&player.seekTo){clearInterval(wait);player.seekTo(o.t,true);player.playVideo();} },150); }); return; }
+    player.seekTo(o.t,true);player.playVideo();
+    setActive(i);
+  });
+});
+</script>
+</body>
+</html>
