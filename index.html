@@ -118,6 +118,18 @@ section.panel.show{display:block}
 .player .yt-seek>i{display:block;height:100%;width:0;background:var(--green);transition:width .25s linear}
 .player .yt-time{flex:none;color:#fff;font-family:var(--head);font-size:.82rem;font-variant-numeric:tabular-nums}
 
+/* ---------- VIDEO + TRASCRIZIONE SINCRONIZZATA ---------- */
+.synced{display:grid;grid-template-columns:1fr 340px;gap:18px;align-items:start;margin-top:4px}
+@media(max-width:820px){.synced{grid-template-columns:1fr}}
+.tx{position:relative;overflow:auto;border:1px solid var(--brd);border-radius:14px;background:var(--card2);padding:6px}
+@media(max-width:820px){.tx{height:320px!important}}
+.tx-head{position:sticky;top:0;z-index:1;background:var(--card2);margin:-6px -6px 4px;padding:12px 14px;font-family:var(--head);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--green2);border-bottom:1px solid var(--brd)}
+.tx-seg{display:flex;gap:10px;width:100%;text-align:left;background:none;border:none;border-radius:10px;padding:10px 12px;cursor:pointer;color:var(--muted);font-family:var(--body);font-size:.95rem;line-height:1.5;transition:background .15s,color .15s}
+.tx-seg:hover{background:rgba(255,255,255,.05);color:var(--text)}
+.tx-seg .tx-time{flex:none;min-width:36px;padding-top:1px;font-family:var(--head);font-size:.78rem;color:var(--green2);font-variant-numeric:tabular-nums}
+.tx-seg.on{background:var(--greenL);color:var(--text)}
+.tx-seg.on .tx-time{color:var(--green);font-weight:700}
+
 .sc-link{display:block;width:100%;text-align:left;background:none;border:none;padding:0 0 8px;font-family:var(--body);font-size:.95rem;font-weight:700;color:var(--green2);cursor:pointer}
 .sc-link:hover{text-decoration:underline}
 
@@ -293,6 +305,8 @@ footer b{color:var(--muted)}
       <button class="pill" data-go="intro">Il video breve</button>
       <button class="pill" data-go="storia">La storia</button>
       <button class="pill" data-go="parole">Le parole</button>
+      <button class="pill" data-go="ipad">L'iPad</button>
+      <button class="pill" data-go="stanford">Stanford</button>
       <button class="pill" data-go="quiz">Metti alla prova</button>
       <button class="pill" data-go="rifletti">Rifletti</button>
       <button class="pill" data-go="documentario">Il video completo</button>
@@ -518,6 +532,163 @@ footer b{color:var(--muted)}
           </ul>
         </div>
       </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ================= L'IPAD (PRESENTAZIONE 2010) ================= -->
+<section class="panel" id="ipad">
+  <div class="wrap">
+    <div class="block">
+      <h2>
+        <svg class="ic" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18.5" x2="12.01" y2="18.5"/></svg>
+        &ldquo;Lo chiamiamo iPad&rdquo;
+      </h2>
+      <p class="lead">San Francisco, 27 gennaio 2010. Steve Jobs presenta un prodotto che ancora non esiste nelle case di nessuno. Guarda il video e <b>segui il testo qui a fianco</b>: la frase in corso si illumina da sola; clicca un passaggio per saltare a quel punto.</p>
+      <div class="synced">
+        <div class="player" data-yt="Ndnmtz8-S5I" data-transcript="ipadTx">
+          <div class="yt-frame"></div>
+          <div class="yt-click"></div>
+          <div class="yt-cover">
+            <div class="yt-play"><svg width="30" height="30" viewBox="0 0 24 24" fill="var(--green)" stroke="none"><polygon points="6 4 20 12 6 20 6 4"/></svg></div>
+            <div class="yt-label">La presentazione dell&rsquo;iPad</div>
+          </div>
+          <div class="yt-bar">
+            <button class="yt-btn yt-pp" aria-label="Play o pausa"></button>
+            <div class="yt-seek"><i></i></div>
+            <span class="yt-time">0:00</span>
+            <button class="yt-btn yt-mute" aria-label="Attiva o disattiva audio"></button>
+          </div>
+        </div>
+        <div class="tx" id="ipadTx">
+          <div class="tx-head">Trascrizione in italiano &middot; clicca per saltare</div>
+          <button class="tx-seg" data-t="0"><span class="tx-time">0:00</span><span class="tx-txt">Ormai tutti noi usiamo computer portatili e smartphone; tutti usano un portatile o uno smartphone e ultimamente è sorta la domanda: c&rsquo;è spazio per una terza categoria di dispositivi nel mezzo, qualcosa che stia tra un portatile e uno smartphone?</span></button>
+          <button class="tx-seg" data-t="20"><span class="tx-time">0:20</span><span class="tx-txt">E ovviamente abbiamo riflettuto su questa domanda per anni. L&rsquo;asticella è piuttosto alta: per creare davvero una nuova categoria di dispositivi, questi dovranno essere di gran lunga migliori nel compiere alcune attività chiave, migliori del portatile e migliori dello smartphone.</span></button>
+          <button class="tx-seg" data-t="41"><span class="tx-time">0:41</span><span class="tx-txt">Che tipo di attività? Beh, cose come navigare sul web, gestire le email, godersi e condividere fotografie, guardare video, godersi la propria collezione musicale, giocare ai videogiochi, leggere ebook.</span></button>
+          <button class="tx-seg" data-t="79"><span class="tx-time">1:19</span><span class="tx-txt">Se ci deve essere una terza categoria di dispositivo, dovrà essere migliore in questo tipo di attività rispetto a un portatile o a uno smartphone, altrimenti non ha motivo di esistere. Alcune persone hanno pensato che potesse essere un netbook, ma il problema è che i netbook non sono migliori in niente.</span></button>
+          <button class="tx-seg" data-t="102"><span class="tx-time">1:42</span><span class="tx-txt">Sono lenti, hanno display di bassa qualità ed eseguono software vecchi e goffi: non sono migliori di un portatile in nulla, sono semplicemente più economici. Ma noi pensiamo di avere qualcosa che sia davvero una terza categoria, e vorremmo mostrarvelo oggi per la prima volta: lo chiamiamo iPad.</span></button>
+          <button class="tx-seg" data-t="140"><span class="tx-time">2:20</span><span class="tx-txt">Quindi lasciate che ve lo mostri. Ne ho proprio uno qui. Ecco come si presenta: molto sottile, proprio così. E potete cambiare lo sfondo della schermata iniziale per personalizzarlo come volete.</span></button>
+          <button class="tx-seg" data-t="175"><span class="tx-time">2:55</span><span class="tx-txt">Ciò che fa questo dispositivo è straordinario. Potete navigarci sul web; è la migliore esperienza di navigazione che abbiate mai provato. È fenomenale vedere un&rsquo;intera pagina web proprio di fronte a voi e poterla manipolare con le dita.</span></button>
+          <button class="tx-seg" data-t="202"><span class="tx-time">3:22</span><span class="tx-txt">È molto meglio di un portatile, molto meglio di uno smartphone. E potete girare l&rsquo;iPad come volete: si regola automaticamente. Tenere internet letteralmente tra le mani è un&rsquo;esperienza incredibile.</span></button>
+          <button class="tx-seg" data-t="238"><span class="tx-time">3:58</span><span class="tx-txt">È fenomenale per le email: girate l&rsquo;iPad di lato e ottenete una visuale diversa; premete per comporre e appare una tastiera quasi a grandezza naturale, scriverci è un sogno. Per le foto, album ed eventi vengono mostrati come pile che potete aprire e sfogliare.</span></button>
+          <button class="tx-seg" data-t="267"><span class="tx-time">4:27</span><span class="tx-txt">Ci sono presentazioni integrate per condividere le foto, un calendario, una rubrica per i contatti e una fantastica applicazione Mappe con mappe, viste satellitari e zoom. L&rsquo;iPad è un modo eccezionale per godersi la propria collezione musicale.</span></button>
+          <button class="tx-seg" data-t="305"><span class="tx-time">5:05</span><span class="tx-txt">E naturalmente abbiamo l&rsquo;iTunes Store integrato: musica, film, programmi TV, podcast, iTunes University, tutto integrato. Potete guardare YouTube anche in alta definizione ed è fantastico per serie TV e film.</span></button>
+          <button class="tx-seg" data-t="331"><span class="tx-time">5:31</span><span class="tx-txt">Questo vi dà una piccola panoramica di ciò che l&rsquo;iPad può fare, ma non c&rsquo;è niente come vederlo in azione. Usarlo è notevole: è molto più intimo di un portatile ed è molto più potente di uno smartphone.</span></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+          <h2>
+            <svg class="ic" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+            Come costruisce l&rsquo;idea
+          </h2>
+          <p class="lead">Jobs non parte dalle caratteristiche tecniche, ma da una <b>domanda</b>. Ecco i quattro passaggi del suo ragionamento.</p>
+
+          <div class="timeline">
+            <div class="tl">
+              <div class="yr">1 &middot; La domanda</div>
+              <h3>C&rsquo;è spazio per una terza categoria?</h3>
+              <p>Tutti usano un portatile o uno smartphone. Esiste qualcosa nel mezzo che abbia davvero senso? Parte da un bisogno, non da un prodotto.</p>
+            </div>
+            <div class="tl">
+              <div class="yr">2 &middot; L&rsquo;asticella alta</div>
+              <h3>Deve essere &laquo;di gran lunga migliore&raquo;</h3>
+              <p>Per creare una nuova categoria, il dispositivo deve battere sia il portatile sia lo smartphone in attività precise: navigare sul web, email, foto, video, musica, giochi, ebook. &laquo;Altrimenti non ha motivo di esistere.&raquo;</p>
+            </div>
+            <div class="tl gold">
+              <div class="yr">3 &middot; Smonta l&rsquo;alternativa</div>
+              <h3>&laquo;I netbook non sono migliori in niente&raquo;</h3>
+              <p>Prima di mostrare la sua risposta, elimina il rivale: i netbook sono lenti, hanno schermi scadenti e software vecchio. Sono solo portatili più economici, non una nuova categoria.</p>
+            </div>
+            <div class="tl">
+              <div class="yr">4 &middot; La rivelazione</div>
+              <h3>&laquo;Lo chiamiamo iPad&raquo;</h3>
+              <p>Solo ora, dopo aver preparato il terreno, mostra l&rsquo;oggetto: sottile, da tenere in mano, da girare in ogni direzione. &laquo;Tenere internet letteralmente tra le mani è un&rsquo;esperienza incredibile.&raquo;</p>
+            </div>
+          </div>
+
+          <div class="cortocircuito">
+            <p><b>Nota il metodo.</b> Jobs vende un&rsquo;<b>esperienza</b>, non una scheda tecnica: &laquo;manipolare un&rsquo;intera pagina web con le dita&raquo;, &laquo;scrivere un&rsquo;email è un sogno&raquo;, &laquo;sfogliare le foto come pile&raquo;. Parla di ciò che <b>provi</b>, non di ciò che il dispositivo <b>è</b>.</p>
+          </div>
+
+          <div class="impegno">
+            <h4>Prova a pensarci</h4>
+            <p class="hint">Secondo te, perché Jobs aspetta così a lungo prima di mostrare l&rsquo;iPad? Cosa ottiene preparando prima la &ldquo;domanda&rdquo; e smontando i netbook?</p>
+            <textarea data-save="ipad_metodo" placeholder="Secondo me&hellip;"></textarea>
+          </div>
+
+          <div class="qnav">
+            <button class="btn btn-ghost" data-go="parole">&lsaquo; Le parole</button>
+            <button class="btn btn-gold" data-go="stanford">Il discorso di Stanford &rsaquo;</button>
+          </div>
+        </div>
+  </div>
+</section>
+
+<!-- ================= IL DISCORSO DI STANFORD (2005) ================= -->
+<section class="panel" id="stanford">
+  <div class="wrap">
+    <div class="block">
+      <h2>
+        <svg class="ic" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        &ldquo;Siate affamati, siate folli&rdquo;
+      </h2>
+      <p class="lead">12 giugno 2005, Stanford University. Steve Jobs &mdash; già malato &mdash; parla ai neolaureati. &laquo;Oggi voglio raccontarvi tre storie della mia vita. Tutto qui, niente di speciale. Solo tre storie.&raquo;</p>
+      <div class="player" data-yt="iVffrEX_YCc">
+        <div class="yt-frame"></div>
+        <div class="yt-click"></div>
+        <div class="yt-cover">
+          <div class="yt-play"><svg width="30" height="30" viewBox="0 0 24 24" fill="var(--green)" stroke="none"><polygon points="6 4 20 12 6 20 6 4"/></svg></div>
+          <div class="yt-label">Discorso di Stanford &middot; 2005</div>
+        </div>
+        <div class="yt-bar">
+          <button class="yt-btn yt-pp" aria-label="Play o pausa"></button>
+          <div class="yt-seek"><i></i></div>
+          <span class="yt-time">0:00</span>
+          <button class="yt-btn yt-mute" aria-label="Attiva o disattiva audio"></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h2>
+        <svg class="ic" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        Le tre storie
+      </h2>
+      <div class="timeline">
+        <div class="tl">
+          <div class="yr">1 &middot; Unire i puntini</div>
+          <h3>Seguire la curiosità</h3>
+          <p>Lascia il college, ma resta a seguire per curiosità un corso di calligrafia. Dieci anni dopo, quei caratteri diventano la bellezza tipografica del Macintosh. &laquo;Non puoi unire i puntini guardando avanti; puoi farlo solo guardando indietro.&raquo;</p>
+        </div>
+        <div class="tl gold">
+          <div class="yr">2 &middot; Amore e perdita</div>
+          <h3>Cadere e ripartire</h3>
+          <p>Fonda Apple in un garage, ma a 30 anni viene licenziato dalla sua stessa azienda. Capisce di amare ancora ciò che fa: riparte con NeXT e Pixar, e infine torna in Apple. &laquo;L&rsquo;unica cosa che mi ha tenuto in piedi è stato l&rsquo;amore per quello che facevo.&raquo;</p>
+        </div>
+        <div class="tl">
+          <div class="yr">3 &middot; La morte</div>
+          <h3>Vivere il proprio tempo</h3>
+          <p>Dopo la diagnosi, ricorda agli studenti che il tempo è prezioso. &laquo;Il vostro tempo è limitato, non sprecatelo vivendo la vita di qualcun altro. Abbiate il coraggio di seguire il vostro cuore e il vostro intuito.&raquo;</p>
+        </div>
+      </div>
+
+      <div class="cortocircuito">
+        <p class="bigquote" style="margin:0">&laquo;Stay hungry. Stay foolish.&raquo;</p>
+        <p style="margin-top:8px">&laquo;Siate affamati, siate folli.&raquo; &mdash; le parole con cui chiude il discorso, riprese dall&rsquo;ultima copertina di una rivista che amava da ragazzo.</p>
+      </div>
+
+      <div class="impegno">
+        <h4>La tua riflessione</h4>
+        <p class="hint">Quale delle tre storie ti colpisce di più, e perché? C&rsquo;è un &ldquo;puntino&rdquo; nella tua vita che oggi non capisci ma che un giorno potrebbe avere senso?</p>
+        <textarea data-save="stanford_riflessione" placeholder="Per me&hellip;"></textarea>
+      </div>
+
+      <div class="qnav">
+        <button class="btn btn-ghost" data-go="ipad">&lsaquo; L&rsquo;iPad</button>
+        <button class="btn btn-gold" data-go="quiz">Mettiti alla prova &rsaquo;</button>
+      </div>
     </div>
   </div>
 </section>
@@ -857,17 +1028,41 @@ document.querySelectorAll('.player').forEach(function(el){
   const fill=seek.querySelector('i');
   const timeEl=el.querySelector('.yt-time');
   const clickLayer=el.querySelector('.yt-click');
-  let player=null, timer=null, dur=0;
+  let player=null, timer=null, dur=0, started=false;
+
+  /* trascrizione sincronizzata (facoltativa) */
+  const txWrap = el.dataset.transcript ? document.getElementById(el.dataset.transcript) : null;
+  const segs = txWrap ? [].slice.call(txWrap.querySelectorAll('.tx-seg')).map(function(n){ return {node:n, t:parseFloat(n.dataset.t)||0}; }) : [];
+  let lastSeg=-1;
+  function highlightSeg(i){
+    if(i===lastSeg)return; lastSeg=i;
+    segs.forEach(function(s,j){ s.node.classList.toggle('on', j===i); });
+    if(i>=0){ const n=segs[i].node; const top=n.offsetTop - txWrap.clientHeight/2 + n.clientHeight/2; txWrap.scrollTo({top:Math.max(0,top),behavior:'smooth'}); }
+  }
+  function fitTx(){ if(!txWrap)return; if(window.innerWidth>820){ txWrap.style.height=el.clientHeight+'px'; } else { txWrap.style.height=''; } }
+  if(txWrap){
+    fitTx(); window.addEventListener('resize',fitTx);
+    if(window.ResizeObserver){ new ResizeObserver(fitTx).observe(el); }
+    segs.forEach(function(s){ s.node.addEventListener('click',function(){ seekToSeg(s.t); }); });
+  }
+  function seekToSeg(t){
+    if(player&&player.seekTo){ player.seekTo(t,true); player.playVideo(); return; }
+    start();
+    const iv=setInterval(function(){ if(player&&player.seekTo){ clearInterval(iv); player.seekTo(t,true); player.playVideo(); } },120);
+    setTimeout(function(){ clearInterval(iv); },6000);
+  }
 
   cover.style.backgroundImage="url('https://img.youtube.com/vi/"+vid+"/hqdefault.jpg')";
   pp.innerHTML=playPath; muteBtn.innerHTML=volPath;
 
   function setPP(playing){ pp.innerHTML=playing?pausePath:playPath; }
-  function tick(){ if(!player||!player.getCurrentTime)return; const ct=player.getCurrentTime(); if(!dur)dur=player.getDuration()||0; fill.style.width=(dur?ct/dur*100:0)+'%'; timeEl.textContent=fmtT(ct)+' / '+fmtT(dur); }
+  function tick(){ if(!player||!player.getCurrentTime)return; const ct=player.getCurrentTime(); if(!dur)dur=player.getDuration()||0; fill.style.width=(dur?ct/dur*100:0)+'%'; timeEl.textContent=fmtT(ct)+' / '+fmtT(dur);
+    if(segs.length){ let a=-1; for(let i=0;i<segs.length;i++){ if(segs[i].t<=ct+0.25)a=i; else break; } highlightSeg(a); } }
   function startTimer(){ stopTimer(); timer=setInterval(tick,300); }
   function stopTimer(){ if(timer){clearInterval(timer);timer=null;} }
 
   function start(){
+    if(started)return; started=true;
     cover.style.display='none';
     whenYT(function(){
       player=new YT.Player(frame,{
